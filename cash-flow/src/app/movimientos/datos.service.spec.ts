@@ -43,9 +43,8 @@ describe('DatosService', () => {
       { id: 3, texto: 'Hipoteca', tipo: 2 },
       { id: 4, texto: 'Compras', tipo: 2 }
     ];
-    fakeMovimiento = [
-      { fecha: new Date(), importe: 100, tipo: 1, categoria: 1, _id: 1, usuario: 1 }
-    ];
+    fakeMovimiento = { fecha: new Date(), importe: 100, tipo: 1, categoria: 1, _id: 1, usuario: 1 };
+
     fakeMovimientos = [
       { fecha: new Date(), importe: 20, tipo: 1, categoria: 1, _id: 1, usuario: 1 },
       { fecha: new Date(), importe: 50, tipo: 2, categoria: 1, _id: 2, usuario: 1 }
