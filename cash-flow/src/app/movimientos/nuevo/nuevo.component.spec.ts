@@ -66,6 +66,22 @@ describe("NuevoComponent", () => {
     });
   */
 
+  it('should render two tipos', () => {
+    let inputs: DebugElement[] = fixture.debugElement.queryAll(By.css('input[type="radio"]'));
+    let spans: DebugElement[] = fixture.debugElement.queryAll(By.css('span'));
+    expect(inputs.length).toBe(2);
+    expect(spans[0].nativeElement.textContent).toBe('Ingreso');
+    expect(spans[1].nativeElement.textContent).toBe('Gasto');
+  });
+
+  it('should render three categorias', () => {
+    let options: DebugElement[] = fixture.debugElement.queryAll(By.css('option'));
+    expect(options.length).toBe(3);
+    expect(options[0].nativeElement.textContent).toContain('Nómina');
+    expect(options[1].nativeElement.textContent).toContain('Ventas');
+    expect(options[2].nativeElement.textContent).toContain('Hipoteca');
+  });
+
   it('should call alGuardarMovimiento on form submit', () => {
     spyOn(component, 'alGuardarMovimiento').and.callThrough();
     fixture.debugElement.query(By.css('button')).nativeElement.click();

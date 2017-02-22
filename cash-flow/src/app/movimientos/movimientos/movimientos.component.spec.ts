@@ -41,7 +41,7 @@ describe("MovimientosComponent", () => {
     expect(aTags[0].attributes['routerLink']).toBe('/movimientos/nuevo');
   });
 
-  it('should have a route to /movimientos/nuevo', () => {
+  it('should have a route to /movimientos/lista', () => {
     let aTags = fixture.debugElement.queryAll(By.css('a'));
     expect(aTags[1].attributes['routerLink']).toBe('/movimientos/lista');
   });
