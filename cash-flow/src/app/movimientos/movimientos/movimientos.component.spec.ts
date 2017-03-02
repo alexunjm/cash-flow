@@ -8,8 +8,8 @@ import { Movimiento } from './../modelos/movimiento';
 import { DatosService } from './../datos.service';
 import { DatosServiceMock } from './../../testing/DatosServiceMock';
 
-describe("MovimientosComponent", () => {
-  let movimiento: Movimiento = new Movimiento(new Date(), 0, 1, 1);
+describe('MovimientosComponent', () => {
+  const movimiento: Movimiento = new Movimiento(new Date(), 0, 1, 1);
   let fixture: ComponentFixture<MovimientosComponent>;
   let component: MovimientosComponent;
 
@@ -32,17 +32,17 @@ describe("MovimientosComponent", () => {
   });
 
   it('should render component', () => {
-    let el: HTMLElement = fixture.debugElement.query(By.css('h3')).nativeElement;
+    const el: HTMLElement = fixture.debugElement.query(By.css('h3')).nativeElement;
     expect(el.textContent).toContain('Alta y visualización de tus ingresos y gastos');
   });
 
   it('should have a route to /movimientos/nuevo', () => {
-    let aTags = fixture.debugElement.queryAll(By.css('a'));
+    const aTags = fixture.debugElement.queryAll(By.css('a'));
     expect(aTags[0].attributes['routerLink']).toBe('/movimientos/nuevo');
   });
 
   it('should have a route to /movimientos/lista', () => {
-    let aTags = fixture.debugElement.queryAll(By.css('a'));
+    const aTags = fixture.debugElement.queryAll(By.css('a'));
     expect(aTags[1].attributes['routerLink']).toBe('/movimientos/lista');
   });
 });

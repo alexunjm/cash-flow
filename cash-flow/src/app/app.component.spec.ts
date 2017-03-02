@@ -1,4 +1,5 @@
-/* tslint:disable:no-unused-variable */
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 import { AppComponent } from './app.component';
 // importante esta línea para omitir el error de <router-outlet>
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -9,9 +10,8 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 // las variables declaradas aquí serán accesibles desde las
 // funciones it
 describe('AppComponent', () => {
-
-  let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
 
   // el código definido dentro de la función beforeEach se
   // ejecuta antes de cada función de prueba.
@@ -69,5 +69,11 @@ describe('AppComponent', () => {
     // nativeElement devuelve una referencia al elemento en el DOM
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Hola Mundo del Cash-Flow con Angular 2!');
+  });
+
+  it('should render routerLinks', () => {
+    const aTags: DebugElement[] = fixture.debugElement.queryAll(By.css('a'));
+    expect(aTags[0].nativeElement.getAttribute('routerLink')).toBe('/');
+    expect(aTags[1].nativeElement.getAttribute('routerLink')).toBe('/movimientos');
   });
 });
