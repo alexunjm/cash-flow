@@ -1,6 +1,6 @@
 import { CashFlowPage } from './app.po';
 
-describe('cash-flow App', function() {
+describe('cash-flow App', () => {
   let page: CashFlowPage;
 
   beforeEach(() => {
