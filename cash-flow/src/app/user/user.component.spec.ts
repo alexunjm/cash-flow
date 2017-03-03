@@ -34,7 +34,7 @@ describe('UserComponent', () => {
 
   it('should render the user data', () => {
     fixture.detectChanges();
-    let user: HTMLElement = fixture.debugElement.query(By.css('h3')).nativeElement;
+    const user: HTMLElement = fixture.debugElement.query(By.css('h3')).nativeElement;
     expect(user.textContent).toContain(JSON.stringify('testingUser'));
   });
 });

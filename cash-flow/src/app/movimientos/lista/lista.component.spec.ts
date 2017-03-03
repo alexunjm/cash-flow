@@ -1,15 +1,13 @@
-/* tslint:disable:no-unused-variable */
 import { By } from '@angular/platform-browser';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
-
 import { Movimiento } from './../modelos/movimiento';
 import { ListaComponent } from './lista.component';
 import { DatosService } from './../datos.service';
 import { DatosServiceMock } from './../../testing/DatosServiceMock';
 
-describe("ListaComponent", () => {
-  let movimiento: Movimiento = new Movimiento(new Date(), 0, 1, 1);
+describe('ListaComponent', () => {
+  const movimiento: Movimiento = new Movimiento(new Date(), 0, 1, 1);
   let fixture: ComponentFixture<ListaComponent>;
   let component: ListaComponent;
   let datosService: DatosService;
@@ -43,8 +41,8 @@ describe("ListaComponent", () => {
 
   it('should render one movimiento', () => {
     fixture.detectChanges();
-    let tr: DebugElement[] = fixture.debugElement.queryAll(By.css('tbody'));
-    let td: DebugElement[] = fixture.debugElement.queryAll(By.css('td'));
+    const tr: DebugElement[] = fixture.debugElement.queryAll(By.css('tbody'));
+    const td: DebugElement[] = fixture.debugElement.queryAll(By.css('td'));
     expect(tr.length).toBe(1);
     expect(td.length).toBe(6);
   });

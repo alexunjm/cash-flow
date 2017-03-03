@@ -34,8 +34,8 @@ describe('DatosService', () => {
 
   beforeEach(() => {
     fakeTipos = [
-      { id: 1, texto: "Ingreso" },
-      { id: 2, texto: "Gasto" }
+      { id: 1, texto: 'Ingreso' },
+      { id: 2, texto: 'Gasto' }
     ];
     fakeCategorias = [
       { id: 1, texto: 'Nómina', tipo: 1 },

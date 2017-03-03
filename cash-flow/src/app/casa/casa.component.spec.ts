@@ -18,7 +18,7 @@ describe('CasaComponent', () => {
       declarations: [
         CasaComponent
       ]
-    })
+    });
     fixture = TestBed.createComponent(CasaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -29,7 +29,7 @@ describe('CasaComponent', () => {
   });
 
   it('sould render an h3 tag', () => {
-    let el: HTMLElement = fixture.debugElement.query(By.css('h3')).nativeElement;
+    const el: HTMLElement = fixture.debugElement.query(By.css('h3')).nativeElement;
     expect(el.textContent).toContain('Bienvenido a tu casa.');
   });
 });

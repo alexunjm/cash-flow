@@ -8,7 +8,6 @@ import 'rxjs/add/observable/of';
 import { ActivatedRoute } from '@angular/router';
 import { Movimiento } from './../modelos/movimiento';
 import { By } from '@angular/platform-browser';
-
 import { EditorComponent } from './editor.component';
 import { DatosService } from './../datos.service';
 import { DatosServiceMock } from './../../testing/DatosServiceMock';
@@ -34,7 +33,7 @@ describe('EditorComponent', () => {
         { provide: DatosService, useValue: new DatosServiceMock() },
         { provide: ActivatedRoute, useValue: new ActivatedRouteMock(Observable.of({ id: 1 })) }
       ]
-    })
+    });
     fixture = TestBed.createComponent(EditorComponent);
     component = fixture.componentInstance;
     datosService = fixture.debugElement.injector.get(DatosService);
@@ -52,7 +51,7 @@ describe('EditorComponent', () => {
 
   it('should render movimiento', () => {
     fixture.detectChanges();
-    let el: HTMLElement = fixture.debugElement.query(By.css('code')).nativeElement;
+    const el: HTMLElement = fixture.debugElement.query(By.css('code')).nativeElement;
     expect(el.textContent).toContain('fecha');
     expect(el.textContent).toContain('importe');
     expect(el.textContent).toContain('tipo');

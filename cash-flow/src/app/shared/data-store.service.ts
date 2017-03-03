@@ -40,7 +40,7 @@ export abstract class DataStoreService {
    */
   protected getData(): any {
     if (this.dataKey) {
-      let localData = localStorage.getItem(this.dataKey);
+      const localData = localStorage.getItem(this.dataKey);
       if (localData) {
         this.data = JSON.parse(localData);
       }

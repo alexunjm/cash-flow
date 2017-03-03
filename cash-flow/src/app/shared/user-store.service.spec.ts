@@ -3,10 +3,10 @@ import { UserStoreService } from './user-store.service';
 import { TestBed } from '@angular/core/testing';
 
 describe(('UserStoreService'), () => {
-  const dataKey: string = 'user-data';
+  const dataKey = 'user-data';
   let userStoreService: UserStoreService;
-  const user: string = 'testUser';
-  const token: string = 'eyJhbGciOiJIUzI1NiIsInR9';
+  const user = 'testUser';
+  const token = 'eyJhbGciOiJIUzI1NiIsInR9';
 
   beforeEach(() => {
     TestBed.configureTestingModule({

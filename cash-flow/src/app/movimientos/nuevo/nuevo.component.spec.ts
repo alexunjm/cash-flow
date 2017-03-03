@@ -8,7 +8,7 @@ import { Movimiento } from './../modelos/movimiento';
 import { DatosService } from './../datos.service';
 import { DatosServiceMock } from './../../testing/DatosServiceMock';
 
-describe("NuevoComponent", () => {
+describe('NuevoComponent', () => {
   let fixture: ComponentFixture<NuevoComponent>;
   let component: NuevoComponent;
   let datosService: DatosService;
@@ -42,7 +42,7 @@ describe("NuevoComponent", () => {
   });
 
   it('should call getTiposMovimiento$', () => {
-    spyOn(datosService, 'getTiposMovimiento$').and.callThrough()
+    spyOn(datosService, 'getTiposMovimiento$').and.callThrough();
     component.ngOnInit();
     expect(datosService.getTiposMovimiento$).toHaveBeenCalled();
   });
@@ -59,23 +59,16 @@ describe("NuevoComponent", () => {
     expect(datosService.getCategoriasPorTipo).toHaveBeenCalled();
   });
 
-  /*
-    it('should render component', () => {
-      let header = fixture.debugElement.query(By.css('h5'));
-      expect(header).toContain('Nuevo Movimiento');
-    });
-  */
-
   it('should render two tipos', () => {
-    let inputs: DebugElement[] = fixture.debugElement.queryAll(By.css('input[type="radio"]'));
-    let spans: DebugElement[] = fixture.debugElement.queryAll(By.css('span'));
+    const inputs: DebugElement[] = fixture.debugElement.queryAll(By.css('input[type="radio"]'));
+    const spans: DebugElement[] = fixture.debugElement.queryAll(By.css('span'));
     expect(inputs.length).toBe(2);
     expect(spans[0].nativeElement.textContent).toBe('Ingreso');
     expect(spans[1].nativeElement.textContent).toBe('Gasto');
   });
 
   it('should render three categorias', () => {
-    let options: DebugElement[] = fixture.debugElement.queryAll(By.css('option'));
+    const options: DebugElement[] = fixture.debugElement.queryAll(By.css('option'));
     expect(options.length).toBe(3);
     expect(options[0].nativeElement.textContent).toContain('Nómina');
     expect(options[1].nativeElement.textContent).toContain('Ventas');
