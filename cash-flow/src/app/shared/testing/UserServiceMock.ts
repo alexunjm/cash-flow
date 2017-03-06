@@ -1,6 +1,7 @@
-import { Observable } from 'rxjs/Observable';
 import { Response, ResponseOptions } from '@angular/http';
-import { UserData } from './../shared/model/data.class';
+
+import { Observable } from 'rxjs/Observable';
+import { UserData } from './../model/data.class';
 
 export class UserServiceMock {
   private token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9';
@@ -28,4 +29,5 @@ export class UserServiceMock {
     user.isLogged = false;
     return user;
   }
+
 }

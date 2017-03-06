@@ -1,8 +1,9 @@
 import { Response, ResponseOptions } from '@angular/http';
-import { Categoria } from './../movimientos/modelos/categoria';
-import { Tipo } from './../movimientos/modelos/tipo';
-import { Movimiento } from './../movimientos/modelos/movimiento';
+
+import { Categoria } from './../../movimientos/modelos/categoria';
+import { Movimiento } from './../../movimientos/modelos/movimiento';
 import { Observable } from 'rxjs/Observable';
+import { Tipo } from './../../movimientos/modelos/tipo';
 
 export class DatosServiceMock {
 
@@ -17,14 +18,14 @@ export class DatosServiceMock {
   }
 
   private initializeCategorias() {
-    this.categorias.push(new Categoria(1, 'Nómina', 1));
-    this.categorias.push(new Categoria(2, 'Ventas', 1));
-    this.categorias.push(new Categoria(3, 'Intereses', 2));
-    this.categorias.push(new Categoria(4, 'Hipoteca', 1));
+    this.categorias.push(new Categoria(1, 'Nómina', 1))
+    this.categorias.push(new Categoria(2, 'Ventas', 1))
+    this.categorias.push(new Categoria(3, 'Intereses', 2))
+    this.categorias.push(new Categoria(4, 'Hipoteca', 1))
   }
 
   constructor() {
-    const movimiento: Movimiento = new Movimiento(new Date(), 0, 1, 1);
+    let movimiento: Movimiento = new Movimiento(new Date(), 0, 1, 1);
     this.movimiento = movimiento;
     this.movimientos.push(Object.assign({}, movimiento));
     this.initializeTipos();
@@ -50,7 +51,7 @@ export class DatosServiceMock {
   postMovimiento$(movimiento: Movimiento) {
     movimiento._id = Date.now().toString();
     this.movimientos.push(movimiento);
-    const options = new ResponseOptions({
+    let options = new ResponseOptions({
       status: 201
     });
     return Observable.of(new Response(options));

@@ -1,4 +1,5 @@
 // Operador de transformación
+
 import 'rxjs/add/operator/map';
 
 import { Http, Response } from '@angular/http';
@@ -6,11 +7,15 @@ import { Http, Response } from '@angular/http';
 import { Categoria } from './modelos/categoria';
 import { Injectable } from '@angular/core';
 import { Movimiento } from './modelos/movimiento';
-// permite la suscripción a cambios de un stream
 import { Observable } from 'rxjs/Observable';
-// se comporta como un observable y además permite la emisión de datos hacia un observable
 import { Subject } from 'rxjs/Subject';
 import { Tipo } from './modelos/tipo';
+
+// permite la suscripción a cambios de un stream
+
+// se comporta como un observable y además permite la emisión de datos hacia un observable
+
+
 
 /**
  * Un servicio es una clase inyectable en otro servicio o componente

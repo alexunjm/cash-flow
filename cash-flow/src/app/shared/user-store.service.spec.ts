@@ -1,6 +1,6 @@
+import { TestBed } from '@angular/core/testing';
 import { UserData } from './model/data.class';
 import { UserStoreService } from './user-store.service';
-import { TestBed } from '@angular/core/testing';
 
 describe(('UserStoreService'), () => {
   const dataKey = 'user-data';

@@ -1,16 +1,18 @@
-import { Tipo } from './modelos/tipo';
-import { Movimiento } from './modelos/movimiento';
+import { BaseRequestOptions, Http, Response, ResponseOptions } from '@angular/http';
+
 import { Categoria } from './modelos/categoria';
-import { Http, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
 import { DatosService } from './datos.service';
-import { TestBed } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
+import { Movimiento } from './modelos/movimiento';
+import { TestBed } from '@angular/core/testing';
+import { Testing } from './../shared/testing/testing';
+import { Tipo } from './modelos/tipo';
 
 describe('DatosService', () => {
   let datosService: DatosService;
   let mockBackend: MockBackend;
   let fakeMovimiento, fakeMovimientos, fakeCategorias, fakeTipos;
-
+  let testing: Testing;
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -30,6 +32,7 @@ describe('DatosService', () => {
     });
     datosService = TestBed.get(DatosService);
     mockBackend = TestBed.get(MockBackend);
+    testing = new Testing(null);
   });
 
   beforeEach(() => {
@@ -52,14 +55,14 @@ describe('DatosService', () => {
   });
 
   it('should get all the tipos', () => {
-    mockBackend.connections.subscribe(connection => {
+     mockBackend.connections.subscribe(connection => {
       connection.mockRespond(new Response(new ResponseOptions({
         body: JSON.stringify(fakeTipos)
       })));
     });
 
     datosService.getTiposMovimiento$().subscribe(tipos => {
-      expect(tipos.length).toBe(2);
+      expect(tipos.length).toBe(fakeTipos.length);
       expect(tipos[0].texto).toBe(fakeTipos[0].texto);
       expect(tipos[1].texto).toBe(fakeTipos[1].texto);
     });
@@ -73,7 +76,7 @@ describe('DatosService', () => {
     });
 
     datosService.getCategorias$().subscribe(categorias => {
-      expect(categorias.length).toBe(4);
+      expect(categorias.length).toBe(fakeCategorias.length);
       expect(categorias[0].texto).toBe(fakeCategorias[0].texto);
       expect(categorias[1].texto).toBe(fakeCategorias[1].texto);
       expect(categorias[2].texto).toBe(fakeCategorias[2].texto);
