@@ -1,10 +1,8 @@
-import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
-
 import { By } from '@angular/platform-browser';
-import { UserComponent } from './user.component';
+import { UserServiceMock } from './../testing/UserServiceMock';
 import { UserService } from './user.service';
-import { UserServiceMock } from './../shared/testing/UserServiceMock';
-
+import { UserComponent } from './user.component';
+import { TestBed, ComponentFixture, inject } from '@angular/core/testing';
 describe('UserComponent', () => {
   let fixture: ComponentFixture<UserComponent>;
   let component: UserComponent;

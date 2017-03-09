@@ -1,13 +1,12 @@
-import { BaseRequestOptions, Http, Response, ResponseOptions } from '@angular/http';
-
-import { MockBackend } from '@angular/http/testing';
-import { Router } from '@angular/router';
-import { RouterMock } from './../shared/testing/RouterMock';
-import { TestBed } from '@angular/core/testing';
-import { UserData } from './../shared/model/data.class';
-import { UserService } from './user.service';
+import { UserStoreServiceMock } from './../testing/UserStoreServiceMock';
 import { UserStoreService } from './../shared/user-store.service';
-import { UserStoreServiceMock } from './../shared/testing/UserStoreServiceMock';
+import { RouterMock } from './../testing/RouterMock';
+import { Router } from '@angular/router';
+import { UserData } from './../shared/model/data.class';
+import { MockBackend } from '@angular/http/testing';
+import { Http, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
+import { UserService } from './user.service';
+import { TestBed } from '@angular/core/testing';
 
 describe('UserService', () => {
   let userService: UserService;

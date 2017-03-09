@@ -2,35 +2,35 @@
   <h5>Listado de Movimientos</h5>
 </header>
 <main>
-    <!--el pipe async ya no se usa, pues la propiedad mueve los datos -->
-    <!--los pipes se pueden entubar-->
-    <article>
-      <blockquote>
-        <p><em>Modo Tabla.</em></p>
-      </blockquote>
-      <div class="row container">
-        <table>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Fecha</th>
-              <th>Tipo</th>
-              <th>Categoría</th>
-              <th>Importe</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let movimiento of movimientos">
-              <!--ruta paramética-->
-              <td> <a [routerLink]="['/movimientos', movimiento._id]">{{ movimiento._id }}</a> </td>
-              <td>{{ movimiento.fecha | date }}</td>
-              <td>{{ movimiento.fecha | date }}</td>
-              <td>{{ movimiento.tipo }}</td>
-              <td>{{ movimiento.categoria }}</td>
-              <td [ngClass]="{ingreso: movimiento.tipo==1, gasto: movimiento.tipo==2}">{{ movimiento.importe | number}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </article>
+  <!--el pipe async ya no se usa, pues la propiedad mueve los datos -->
+  <!--los pipes se pueden entubar-->
+  <article>
+    <blockquote>
+      <p><em>Modo Tabla.</em></p>
+    </blockquote>
+    <div class="row container">
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Categoría</th>
+            <th>Importe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let movimiento of movimientos">
+            <!--ruta paramética-->
+            <td> <a [routerLink]="['/movimientos', movimiento._id]">{{ movimiento._id }}</a> </td>
+            <td>{{ movimiento.fecha | date }}</td>
+            <td>{{ movimiento.fecha | date }}</td>
+            <td>{{ movimiento.tipo }}</td>
+            <td>{{ movimiento.categoria }}</td>
+            <td [ngClass]="{ingreso: movimiento.tipo==1, gasto: movimiento.tipo==2}">{{ movimiento.importe | number}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
 </main>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 /** Servicio para acceder a la ruta activa */
 import { ActivatedRoute } from '@angular/router';
 import { DatosService } from './../datos.service';
@@ -19,7 +18,7 @@ export class EditorComponent implements OnInit {
     // subscripción al observable params
     this.route.params
       .subscribe(params => {
-        const _id = params['id'].toString(); // recpeción del parámetro
+        const _id = params['id'].toString(); // recepción del parámetro
         this.datosService
           .getMovimientoBy_Id$(_id)
           .subscribe(r => this.movimiento = r); // consulta al servicio

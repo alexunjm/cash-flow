@@ -1,31 +1,42 @@
-import 'rxjs/add/observable/of';
-
-import * as movimientosIndex from './../index';
-
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-
-import { By } from '@angular/platform-browser';
-import { DatosService } from './../datos.service';
+/* tslint:disable:no-unused-variable */
+import { inject } from '@angular/core/testing';
+import { HttpModule } from '@angular/http';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-
-/* tslint:disable:no-unused-variable */
+import 'rxjs/add/observable/of';
+import { ActivatedRoute } from '@angular/router';
+import { Movimiento } from './../modelos/movimiento';
+import { By } from '@angular/platform-browser';
+import { EditorComponent } from './editor.component';
+import { DatosService } from './../datos.service';
+import { DatosServiceMock } from './../../testing/DatosServiceMock';
+import { ActivatedRouteMock } from './../../testing/ActivatedRouteMock';
 
 describe('EditorComponent', () => {
-  let component: movimientosIndex.EditorComponent;
-  let fixture: ComponentFixture<movimientosIndex.EditorComponent>;
+  let fixture: ComponentFixture<EditorComponent>;
+  let component: EditorComponent;
   let datosService: DatosService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule(movimientosIndex.movimientosTestConfig)
-    .compileComponents();
-  }));
-
   beforeEach(() => {
-    fixture = TestBed.createComponent(movimientosIndex.EditorComponent);
+    TestBed.configureTestingModule({
+      declarations: [
+        EditorComponent
+      ],
+      // especificamos el mock que se le va a inyectar al
+      // componente
+      // se le inyecta un objeto totalmente diferente al
+      // declarado, es decir, un clon de datosServiceMock,
+      // por lo que cualquier cambio realizado sobre el stub
+      // no tendrá efecto en el servicio inyectado.
+      providers: [
+        { provide: DatosService, useValue: new DatosServiceMock() },
+        { provide: ActivatedRoute, useValue: new ActivatedRouteMock(Observable.of({ id: 1 })) }
+      ]
+    });
+    fixture = TestBed.createComponent(EditorComponent);
     component = fixture.componentInstance;
     datosService = fixture.debugElement.injector.get(DatosService);
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -46,5 +57,4 @@ describe('EditorComponent', () => {
     expect(el.textContent).toContain('tipo');
     expect(el.textContent).toContain('categoria');
   });
-
 });

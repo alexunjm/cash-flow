@@ -9,14 +9,16 @@ describe('CasaComponent', () => {
   let component: CasaComponent;
   let fixture: ComponentFixture<CasaComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CasaComponent ]
-    })
-    .compileComponents();
-  }));
-
+  // no utilizamos un beforeEach asíncrono ya
+  // que al utilizar webpack el template se
+  // añadirá al componente antes de que Angular
+  // intente acceder a él
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        CasaComponent
+      ]
+    });
     fixture = TestBed.createComponent(CasaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -24,5 +26,10 @@ describe('CasaComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('sould render an h3 tag', () => {
+    const el: HTMLElement = fixture.debugElement.query(By.css('h3')).nativeElement;
+    expect(el.textContent).toContain('Bienvenido a tu casa.');
   });
 });

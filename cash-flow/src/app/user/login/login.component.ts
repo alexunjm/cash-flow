@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   /**
    * Some questions to indentify the user
    */
-  private credentials = {
+  public credentials = {
     email: '',
     password: ''
   };
@@ -38,6 +38,6 @@ export class LoginComponent implements OnInit {
   }
 
   showError(control) {
-    return control.errors && (control.dirty || control.touched)
+    return control.errors && (control.dirty || control.touched);
   }
 }
