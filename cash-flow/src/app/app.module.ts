@@ -32,6 +32,6 @@ import { UserModule } from './user/user.module';
  * Destinado a importar la funcionalidad implentada en otros módulos
  */
 export class AppModule {
-  // los módulos son clases contendoras
+  // los módulos son clases contendoras 
   // habitualmente con poco o ningún código
 }

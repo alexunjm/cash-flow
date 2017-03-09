@@ -7,7 +7,7 @@ describe('cash-flow App', () => {
     page = new CashFlowPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying Hola Mundo del Cash-Flow con Angular 2!', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('Hola Mundo del Cash-Flow con Angular 2!');
   });

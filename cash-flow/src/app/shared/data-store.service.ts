@@ -36,11 +36,11 @@ export abstract class DataStoreService {
     this.dataSubject.next(this.data);
   }
   /**
-   * Gets data from local storage
+   * Gets data from local sotorage
    */
   protected getData(): any {
     if (this.dataKey) {
-      const localData = localStorage.getItem(this.dataKey);
+      let localData = localStorage.getItem(this.dataKey);
       if (localData) {
         this.data = JSON.parse(localData);
       }
