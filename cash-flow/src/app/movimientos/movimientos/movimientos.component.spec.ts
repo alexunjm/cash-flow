@@ -1,23 +1,23 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import * as movimientosIndex from './../index';
+
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { MovimientosComponent } from './movimientos.component';
-
 describe('MovimientosComponent', () => {
-  let component: MovimientosComponent;
-  let fixture: ComponentFixture<MovimientosComponent>;
+  let component: movimientosIndex.MovimientosComponent;
+  let fixture: ComponentFixture<movimientosIndex.MovimientosComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ MovimientosComponent ]
-    })
+    TestBed.configureTestingModule(movimientosIndex.movimientosTestConfig)
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MovimientosComponent);
+    fixture = TestBed.createComponent(movimientosIndex.MovimientosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
