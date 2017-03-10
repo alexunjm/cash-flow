@@ -1,20 +1,20 @@
 import { browser, element, by, ElementFinder, ElementArrayFinder } from 'protractor';
 
 export class NuevoMovimientoPage {
-  public fecha: ElementFinder;
-  public importe: ElementFinder;
-  public tipos: ElementArrayFinder;
-  public categoria: ElementFinder;
+  private fecha: ElementFinder;
+  private importe: ElementFinder;
+  private tipos: ElementArrayFinder;
+  private categoria: ElementFinder;
 
   navigateTo() {
     return browser.get('/movimientos/nuevo');
   }
 
-  searchElements(option: string) {
+  private searchElements(option: string) {
     this.fecha = element(by.css('input[name="fecha"]'));
     this.importe = element(by.css('input[name="importe"]'));
     this.tipos = element.all(by.css('input[name="tipo"]'));
-    this.categoria = element(by.cssContainingText('option', 'Compras'));
+    this.categoria = element(by.cssContainingText('option', option));
   }
 
   createMovimiento(date, importe, tipo, categoria) {
