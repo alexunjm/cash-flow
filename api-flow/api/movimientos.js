@@ -23,6 +23,10 @@ module.exports = (app, rutaMovimientos) => {
       nuevoMovimiento.usuario = req.usuario;
       movimientos.push(nuevoMovimiento)
       res.status(201).json(nuevoMovimiento);
+    })
+    .delete((req, res) => {
+      movimientos = [];
+      res.status(204).send();
     });
   // esto otra ruta va a nivel de un elemento concreto
   // // api/priv/movimientos/159
