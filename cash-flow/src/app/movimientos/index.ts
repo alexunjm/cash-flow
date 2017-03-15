@@ -12,6 +12,7 @@ import { NuevoComponent } from './nuevo/nuevo.component';
 import { Observable } from 'rxjs/Observable';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from './../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export { DatosService } from './datos.service';
 export { EditorComponent } from './editor/editor.component';
@@ -21,10 +22,12 @@ export { MovimientosRoutingModule } from './movimientos-routing.module';
 export { NuevoComponent } from './nuevo/nuevo.component';
 export { RouterTestingModule } from '@angular/router/testing';
 export { SharedModule } from './../shared/shared.module';
+export { ReactiveFormsModule } from '@angular/forms';
 
 export const movimientosConfig = {
   imports: [ // dependencias de otros módulos
     SharedModule,
+    ReactiveFormsModule,
     MovimientosRoutingModule // el módulo de enrutado
   ],
   declarations: [ // componentes que se declaran en este módulo de movimientos
@@ -39,11 +42,12 @@ export const movimientosConfig = {
   providers: [ // registro del servicio de datos como un proveedor inyectable
     DatosService
   ]
-}
+};
 
 export const movimientosTestConfig = {
   imports: [ // dependencias de otros módulos
     SharedModule,
+    ReactiveFormsModule,
     RouterTestingModule // el módulo de enrutado
   ],
   declarations: [ // componentes que se declaran en este módulo de movimientos
@@ -65,4 +69,4 @@ export const movimientosTestConfig = {
         { provide: DatosService, useValue: new DatosServiceMock() },
         { provide: ActivatedRoute, useValue: new ActivatedRouteMock(Observable.of({ id: 1 })) }
       ]
-}
+};
