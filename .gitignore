@@ -4,3 +4,5 @@ Thumbs.db
 
 #NPM Log
 npm-debug.log
+# dependencies
+/**/node_modules

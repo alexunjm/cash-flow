@@ -1,0 +1,26 @@
+{
+  "name": "ng-one-flow",
+  "version": "1.0.0",
+  "description": "AngularJS 1 client cash-flow",
+  "main": "app.js",
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  },
+  "scripts": {
+    "start": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AgoraBinaria/cash-flow.git"
+  },
+  "keywords": [
+    "AngularJS"
+  ],
+  "author": "Alberto Basalo <albertobasalo@agorabinaria.com> (http://agorabinaria.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AgoraBinaria/cash-flow/issues"
+  },
+  "homepage": "https://github.com/AgoraBinaria/cash-flow#readme"
+}
