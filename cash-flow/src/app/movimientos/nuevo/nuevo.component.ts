@@ -4,27 +4,20 @@ import { Categoria } from './../modelos/categoria';
 import { DatosService } from './../datos.service';
 import { Movimiento } from './../modelos/movimiento';
 import { Tipo } from './../modelos/tipo';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'cf-nuevo',
   templateUrl: './nuevo.component.html',
-  styleUrls: ['./nuevo.component.css'] // ruta para hojas de estilo propias
+  styleUrls: ['./nuevo.component.css']
 })
-/**
- *  Componente para crear movimientos
- **/
 export class NuevoComponent implements OnInit {
-  // ya no recibe datos vía propiedades
-  /** propiedad para entrada de tipos de movimiento */
+  private nuevoForm: FormGroup;
   tipos: Tipo[] = [];
-  /** propiedad para entrada de categorias de movimiento */
   categorias: Categoria[] = [];
-  /** propiedad para entrada de un movimiento */
   movimiento: Movimiento;
 
-  // ya no se usa datos service
-  // es un componente tonto ()
-  constructor(private datosService: DatosService) { /** VACÍO */ }
+  constructor(private formBuilder: FormBuilder, private datosService: DatosService) { }
 
   ngOnInit() {
     this.movimiento = this.datosService.getNuevoMovimiento();
@@ -34,8 +27,14 @@ export class NuevoComponent implements OnInit {
         this.categorias = this.datosService.getCategoriasPorTipo(this.movimiento.tipo);
       });
     });
+    this.nuevoForm = this.formBuilder.group({
+      fecha: [this.movimiento.fecha],
+      importe: [this.movimiento.importe, Validators.required],
+      tipo: 1,
+      categoria: ['', Validators.required]
+    });
   }
-  /**
+  /*
    * Recalcula las categorias válidas para el tipo del movimiento actual
    */
   alCambiarTipo(): void {
@@ -46,7 +45,8 @@ export class NuevoComponent implements OnInit {
       this.movimiento.categoria = this.datosService.getCategoriasPorTipo(this.movimiento.tipo)[0].id;
     }
   }
-  /**
+
+  /*
    * Almacena el movimiento actual
    */
   alGuardarMovimiento(): void {

@@ -2,49 +2,48 @@
   <h5>Nuevo Movimiento</h5>
 </header>
 <main>
-  <!-- * directivas estructurales-->
-  <form>
-    <!--banana in a box, lectura y escritura-->
+  <form (ngSubmit)="alGuardarMovimiento()" [formGroup]="nuevoForm">
     <div class="row">
-      <label for="fecha" class="column">Fecha: </label>
-      <!--<input type="date" [(ngModel)]="movimiento.fecha" name="fecha" class="column">-->
-      <!--las fechas y sus formatos...-->
-      <input type="date" [ngModel]="movimiento.fecha | date:'y-MM-dd'" (ngModelChange)="movimiento.fecha = $event" name="fecha" class="column">
+      <label for="fecha" class="column" [ngClass]="{ 'text-error': (nuevoForm.get('fecha').touched || nuevoForm.get('fecha').dirty) && !nuevoForm.get('fecha').valid }">Fecha: </label>
+      <input type="date" class="column" [ngClass]="{ 'input-error': (nuevoForm.get('fecha').touched || nuevoForm.get('fecha').dirty) && !nuevoForm.get('fecha').valid }" formControlName="fecha" novalidate>
     </div>
     <div class="row">
-      <label for="importe" class="column">Importe: </label>
-      <input type="number" [(ngModel)]="movimiento.importe" name="importe" class="column">
+      <label for="importe" class="column" [ngClass]="{ 'text-error': (nuevoForm.get('importe').touched || nuevoForm.get('importe').dirty) && !nuevoForm.get('importe').valid }">Importe: </label>
+      <input type="number" class="column" [ngClass]="{ 'input-error': (nuevoForm.get('importe').touched || nuevoForm.get('importe').dirty) && !nuevoForm.get('importe').valid }" formControlName="importe" novalidate>
+    </div>
+    <div *ngIf="(nuevoForm.get('importe').touched || nuevoForm.get('importe').dirty) && nuevoForm.get('importe').errors">
+      <p *ngIf="nuevoForm.get('importe').errors.required" class="float-right text-error">El campo es obligatorio</p>
     </div>
     <div class="row">
       <label for="tipo" class="column">Tipo: </label>
-      <!--bucle para definir las opciones de radio buttons-->
       <div *ngFor="let tipo of tipos" class="column">
-        <!--evento de cambio del modelo-->
-        <input type="radio" name="tipo" [value]="tipo.id" [(ngModel)]="movimiento.tipo" (ngModelChange)="alCambiarTipo()">
-        <!--interpolación del atributo class -->
-        <span class="{{tipo.texto | lowercase}}">{{ tipo.texto }}</span>
+        <input type="radio" name="tipo" [value]="tipo.id" formControlName="tipo">
+        <span class="{{ tipo.texto | lowercase }}">{{ tipo.texto }}</span>
       </div>
     </div>
     <div class="row">
-      <label for="categoria" class="column">Categoría: </label>
-      <!--las opciones se cargan con *ngFor-->
-      <select name="categoria" [(ngModel)]="movimiento.categoria" class="column">
+      <label for="categoria" class="column" [ngClass]="{ 'text-error': (nuevoForm.get('categoria').touched || nuevoForm.get('categoria').dirty) && !nuevoForm.get('categoria').valid }">Categoría: </label>
+      <select name="categoria" class="column" [ngClass]="{ 'input-error': (nuevoForm.get('categoria').touched || nuevoForm.get('categoria').dirty) && !nuevoForm.get('categoria').valid }" formControlName="categoria">
+        <option value="" selected>Selecciona una categoría...</option>
         <option 
             *ngFor="let categoria of categorias"
             [value]="categoria.id"> 
-            {{categoria.texto}} 
+            {{ categoria.texto }} 
         </option>
     </select>
     </div>
+    <div *ngIf="(nuevoForm.get('categoria').touched || nuevoForm.get('categoria').dirty) && nuevoForm.get('categoria').errors">
+      <p *ngIf="nuevoForm.get('categoria').errors.required" class="float-right text-error">El campo es obligatorio</p>
+    </div>
     <div class="row">
-      <button (click)="alGuardarMovimiento()">Guardar Movimiento</button>
+      <button type="submit" [disabled]="!nuevoForm.valid">Crear movimiento</button>
     </div>
   </form>
   <aside class="container">
     <em class="row">Movimento en curso: </em>
     <code class="row">
       <!--visión de un objeto con el pipe json-->
-      <strong>{{ movimiento | json }}</strong>
+      <strong>{{ nuevoForm.value | json }}</strong>
     </code>
   </aside>
   <aside>
