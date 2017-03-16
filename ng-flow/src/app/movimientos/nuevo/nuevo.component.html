@@ -13,6 +13,7 @@
     </div>
     <div *ngIf="(nuevoForm.get('importe').touched || nuevoForm.get('importe').dirty) && nuevoForm.get('importe').errors">
       <p *ngIf="nuevoForm.get('importe').errors.required" class="float-right text-error">El campo es obligatorio</p>
+      <p *ngIf="nuevoForm.get('importe').errors.positive" class="float-right text-error">El importe debe ser positivo</p>
     </div>
     <div class="row">
       <label for="tipo" class="column">Tipo: </label>

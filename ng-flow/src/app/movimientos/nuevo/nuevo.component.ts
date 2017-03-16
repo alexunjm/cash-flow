@@ -4,7 +4,14 @@ import { Categoria } from './../modelos/categoria';
 import { DatosService } from './../datos.service';
 import { Movimiento } from './../modelos/movimiento';
 import { Tipo } from './../modelos/tipo';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
+function positiveValidator(control: AbstractControl): {[key: string]: boolean} | null {
+  if (control.value !== undefined && (isNaN(control.value) || control.value < 0)) {
+    return { 'positive': true };
+  }
+  return null;
+}
 
 @Component({
   selector: 'cf-nuevo',
@@ -29,7 +36,7 @@ export class NuevoComponent implements OnInit {
     });
     this.nuevoForm = this.formBuilder.group({
       fecha: [this.movimiento.fecha],
-      importe: [this.movimiento.importe, Validators.required],
+      importe: [this.movimiento.importe, [Validators.required, positiveValidator]],
       tipo: 1,
       categoria: ['', Validators.required]
     });
