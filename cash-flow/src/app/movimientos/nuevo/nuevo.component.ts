@@ -4,7 +4,7 @@ import { Categoria } from './../modelos/categoria';
 import { DatosService } from './../datos.service';
 import { Movimiento } from './../modelos/movimiento';
 import { Tipo } from './../modelos/tipo';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'cf-nuevo',
@@ -28,10 +28,10 @@ export class NuevoComponent implements OnInit {
       });
     });
     this.nuevoForm = this.formBuilder.group({
-      fecha: this.movimiento.fecha,
-      importe: this.movimiento.importe,
-      tipo: '',
-      categoria: ''
+      fecha: [this.movimiento.fecha],
+      importe: [this.movimiento.importe, Validators.required],
+      tipo: 1,
+      categoria: ['', Validators.required]
     });
   }
   /*
