@@ -18,7 +18,7 @@
 		var interceptor = {}; 
 
 		interceptor.request = function (request) {
-			request.headers["sessionId"] = $cookies.get("sessionId");
+			request.headers["Authorization"] = 'Basic ' + $cookies.get("sessionId");
 			return request;
 		};
 
