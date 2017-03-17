@@ -6,7 +6,11 @@ import { Movimiento } from './../modelos/movimiento';
 import { Tipo } from './../modelos/tipo';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
-function positiveValidator(control: AbstractControl): { [key: string]: boolean } | null {
+interface ResponseValidator {
+  [key: string]: boolean;
+}
+
+function positiveNumberValidator(control: AbstractControl): ResponseValidator {
   if (control.value !== undefined && (isNaN(control.value) || control.value < 0)) {
     return { 'positive': true };
   }
@@ -44,8 +48,8 @@ export class NuevoComponent implements OnInit {
 
   buildForm() {
     this.nuevoForm = this.formBuilder.group({
-      fecha: [this.movimiento.fecha],
-      importe: [this.movimiento.importe, [Validators.required, positiveValidator]],
+      fecha: [this.movimiento.fecha.toISOString().substring(0, 10)],
+      importe: [this.movimiento.importe, [Validators.required, positiveNumberValidator]],
       tipo: 1,
       categoria: ['', Validators.required]
     });
