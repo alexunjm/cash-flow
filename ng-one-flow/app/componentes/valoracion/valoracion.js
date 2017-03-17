@@ -1,7 +1,7 @@
 (function () {
 	angular.module('abValoracion', [])
 		.component('abValoracion', {
-			templateUrl: './componentes/valoracion/tpl-valoracion.html',
+			templateUrl: './app/componentes/valoracion/tpl-valoracion.html',
 			bindings: {
 				valor: '=',
 				max: '@',

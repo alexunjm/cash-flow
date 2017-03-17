@@ -9,7 +9,7 @@
 				})
 		})
 		.component('abNuevo', {
-			templateUrl: './estados/nuevo/nuevo.html',
+			templateUrl: './app/estados/nuevo/nuevo.html',
 			controller: function (movimientosService, maestrosService) {
 				var vm = this;
 				/*
@@ -31,7 +31,7 @@
 					});
 				*/
 				// la nueva llamada tiene sintaxis síncrona
-				vm.maestros = maestrosService.get();
+				vm.maestros = maestrosService.query();
 
 				// la función que invoca el usuario es también asíncrona
 				/*

@@ -8,7 +8,7 @@
 				})
 		})
 		.component('abRegistro', {
-			templateUrl: './estados/registro/registro.html',
+			templateUrl: './app/estados/registro/registro.html',
 			controller: registroCtrl
 		})
 

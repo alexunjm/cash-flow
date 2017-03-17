@@ -9,7 +9,7 @@
 				})
 		})
 		.component('abTotal', {
-			templateUrl: './estados/total/total.html',
+			templateUrl: './app/estados/total/total.html',
 			controller: function (movimientosService) {
 				var vm = this;
 				/*

@@ -23,7 +23,7 @@
 			transclude: {
 				mensaje: 'mensaje'
 			},
-			templateUrl: './componentes/tpl-cabecera.html'
+			templateUrl: './app/componentes/tpl-cabecera.html'
 		};
 	};
 
