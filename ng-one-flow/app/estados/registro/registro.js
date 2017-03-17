@@ -1,5 +1,5 @@
 (function () {
-	angular.module('registro', ['ui.router'])
+	angular.module('registro', ['ui.router', 'shared'])
 		.config(function ($stateProvider) {
 			$stateProvider
 				.state('registro', {

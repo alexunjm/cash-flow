@@ -1,6 +1,6 @@
 (function () {
 
-	angular.module('total', ['ui.router', 'abFiltros', 'abComponentes', 'servicios'])
+	angular.module('total', ['ui.router', 'shared'])
 		.config(function ($stateProvider) {
 			$stateProvider
 				.state('total', {

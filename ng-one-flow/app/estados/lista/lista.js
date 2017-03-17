@@ -1,6 +1,6 @@
 (function () {
 
-	angular.module('lista', ['ui.router', 'abFiltros', 'abComponentes', 'servicios'])
+	angular.module('lista', ['ui.router', 'shared'])
 		.config(function ($stateProvider) {
 			$stateProvider
 				.state('lista', {

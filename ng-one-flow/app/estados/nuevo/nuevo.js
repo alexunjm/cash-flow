@@ -1,6 +1,6 @@
 (function () {
 
-	angular.module('nuevo', ['ui.router', 'abFiltros', 'abComponentes', 'servicios'])
+	angular.module('nuevo', ['ui.router', 'shared'])
 		.config(function ($stateProvider) {
 			$stateProvider
 				.state('nuevo', {

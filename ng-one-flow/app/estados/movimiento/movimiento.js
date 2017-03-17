@@ -1,6 +1,6 @@
 (function () {
 
-	angular.module('movimiento', ['ui.router', 'abFiltros', 'abComponentes', 'servicios'])
+	angular.module('movimiento', ['ui.router', 'shared'])
 		.config(function ($stateProvider) {
 			$stateProvider
 				.state('movimiento', {
