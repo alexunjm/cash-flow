@@ -16,7 +16,7 @@
 	// Es cómodo usarlo para compartir datos de infraestructura
 	// No conviene abusar, para reducir la posibilidad de conflictos y polución de la memoria
 	// El servicio $cookieStore, viene en el módulo ngCookies
-	function registroCtrl($state, $http, $cookies, $rootScope, environment) {
+	function registroCtrl($state, $http, $rootScope, environment) {
 		var urlBase = environment.apiUrl + "/api/pub/";
 		var vm = this;
 		vm.usuario = {};
@@ -25,7 +25,7 @@
 				.then(function (respuesta) {
 					$rootScope.usuario = vm.usuario.email;
 					$rootScope.mensaje = 'recién creado';
-					$cookies.put("sessionId", respuesta.data);
+				  localStorage.setItem("sessionId", respuesta.data);
 					$state.go("total");
 				}, function (respuesta) {
 					$rootScope.mensaje = respuesta.data;
@@ -36,7 +36,7 @@
 				.then(function (respuesta) {
 					$rootScope.usuario = vm.usuario.email;
 					$rootScope.mensaje = 'recién entrado';
-					$cookies.put("sessionId", respuesta.data);
+					localStorage.setItem("sessionId", respuesta.data);
 					$state.go("total");
 				}, function (respuesta) {
 					$rootScope.mensaje = respuesta.data;

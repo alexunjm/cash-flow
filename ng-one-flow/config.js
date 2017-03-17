@@ -14,11 +14,11 @@
 		$httpProvider.interceptors.push(funcionInterceptoraSeguridad);
 	}
 
-	function funcionInterceptoraSeguridad($injector, $q, $cookies, $rootScope) {
+	function funcionInterceptoraSeguridad($injector, $q,  $rootScope) {
 		var interceptor = {}; 
 
 		interceptor.request = function (request) {
-			request.headers["Authorization"] = 'Basic ' + $cookies.get("sessionId");
+			request.headers["Authorization"] = 'Basic ' + localStorage.getItem("sessionId");
 			return request;
 		};
 
@@ -29,7 +29,7 @@
 				$state.go('registro');
 			} else if (response.status === 419) {
 				$rootScope.mensaje = "Estoy caduco!!!";
-				$cookies.remove("sessionId")
+				localStorage.removeItem("sessionId");
 				$state.go('registro');
 			};
 			return $q.reject(response);
