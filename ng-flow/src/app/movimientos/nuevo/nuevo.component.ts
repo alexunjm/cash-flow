@@ -40,6 +40,14 @@ export class NuevoComponent implements OnInit {
       tipo: 1,
       categoria: ['', Validators.required]
     });
+    this.nuevoForm.get('tipo').valueChanges.subscribe((tipo) => {
+      this.datosService.getCategorias$().subscribe(categorias => {
+        this.categorias = this.datosService.getCategoriasPorTipo(tipo);
+        this.nuevoForm.patchValue({
+          categoria: ''
+        });
+      });
+    });
   }
   /*
    * Recalcula las categorias válidas para el tipo del movimiento actual
