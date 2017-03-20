@@ -1,21 +1,10 @@
+import { positiveNumberValidator, betweenTwoDatesValidator } from '../../shared/custom-validators';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
 import { Categoria } from './../modelos/categoria';
 import { DatosService } from './../datos.service';
 import { Movimiento } from './../modelos/movimiento';
 import { Tipo } from './../modelos/tipo';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-
-interface ResponseValidator {
-  [key: string]: boolean;
-}
-
-function positiveNumberValidator(control: AbstractControl): ResponseValidator {
-  if (control.value !== undefined && (isNaN(control.value) || control.value < 0)) {
-    return { 'positive': true };
-  }
-  return null;
-}
 
 @Component({
   selector: 'cf-nuevo',
