@@ -14,7 +14,7 @@ export function positiveNumberValidator(control: AbstractControl): ResponseValid
 export function betweenTwoDatesValidator(date1: Date, date2: Date): ValidatorFn {
   return (control: AbstractControl): ResponseValidator => {
     const currentDate = new Date(control.value);
-    if (currentDate <= date1 || currentDate >= date2) {
+    if (currentDate < date1 || currentDate > date2) {
       return { 'betweenTwoDates': true };
     }
     return null;

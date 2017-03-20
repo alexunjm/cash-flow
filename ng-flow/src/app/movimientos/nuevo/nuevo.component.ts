@@ -40,7 +40,7 @@ export class NuevoComponent implements OnInit {
     const pastDate = new Date(Date.now());
     const futureDate = new Date(Date.now());
 
-    pastDate.setDate(currentDate.getDate() - 5);
+    pastDate.setDate(currentDate.getDate() - 6);
     futureDate.setDate(currentDate.getDate() + 5);
 
     this.nuevoForm = this.formBuilder.group({
