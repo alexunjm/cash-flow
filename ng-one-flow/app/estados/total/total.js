@@ -1,6 +1,6 @@
 (function () {
 
-	angular.module('total', ['ui.router', 'abFiltros', 'abComponentes', 'servicios'])
+	angular.module('total', ['ui.router', 'shared'])
 		.config(function ($stateProvider) {
 			$stateProvider
 				.state('total', {
@@ -9,7 +9,7 @@
 				})
 		})
 		.component('abTotal', {
-			templateUrl: './estados/total/total.html',
+			templateUrl: './app/estados/total/total.html',
 			controller: function (movimientosService) {
 				var vm = this;
 				/*

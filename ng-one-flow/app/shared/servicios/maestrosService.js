@@ -14,7 +14,7 @@
 		// y devolvemos recursos...
 		// que pueden ser consumidos con sintaxis síncrona
 		// El uso de recursos simplifica mucho la sintaxis
-		return $resource(environment.apiUrl + "/api/pub/maestros/");
+		return $resource(environment.apiUrl + "/api/pub/maestros/categorias");
 
 
 	}

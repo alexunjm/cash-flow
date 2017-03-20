@@ -27,8 +27,8 @@
 					<div class="control-group">
 						<label class="control-label" for="categ">Categoría</label>
 						<div class="controls">
-							<select ng-show="$ctrl.nuevoMovimiento.esIngreso" name="categoria" ng-model="$ctrl.nuevoMovimiento.categoria" ng-options="categoria for categoria in $ctrl.maestros.categoriasIngresos"></select>
-							<select ng-show="$ctrl.nuevoMovimiento.esGasto" name="categoria" ng-model="$ctrl.nuevoMovimiento.categoria" ng-options="categoria for categoria in $ctrl.maestros.categoriasGastos"></select>
+							<select ng-show="$ctrl.nuevoMovimiento.esIngreso" name="categoria" ng-model="$ctrl.nuevoMovimiento.categoria" ng-options="categoria.id for categoria in $ctrl.maestros.categoriasIngresos"></select>
+							<select ng-show="$ctrl.nuevoMovimiento.esGasto" name="categoria" ng-model="$ctrl.nuevoMovimiento.categoria" ng-options="categoria.id for categoria in $ctrl.maestros.categoriasGastos"></select>
 						</div>
 					</div>
 				</div>

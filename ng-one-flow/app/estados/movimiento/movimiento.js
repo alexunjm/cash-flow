@@ -1,6 +1,6 @@
 (function () {
 
-	angular.module('movimiento', ['ui.router', 'abFiltros', 'abComponentes', 'servicios'])
+	angular.module('movimiento', ['ui.router', 'shared'])
 		.config(function ($stateProvider) {
 			$stateProvider
 				.state('movimiento', {
@@ -10,7 +10,7 @@
 				})
 		})
 		.component('abMovimiento', {
-			templateUrl: './estados/movimiento/movimiento.html',
+			templateUrl: './app/estados/movimiento/movimiento.html',
 			controller: function (movimientosService, maestrosService, $state, $stateParams) {
 				var vm = this;
 				/** Recuperación de parámetros */

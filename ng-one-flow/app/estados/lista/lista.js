@@ -1,6 +1,6 @@
 (function () {
 
-	angular.module('lista', ['ui.router', 'abFiltros', 'abComponentes', 'servicios'])
+	angular.module('lista', ['ui.router', 'shared'])
 		.config(function ($stateProvider) {
 			$stateProvider
 				.state('lista', {
@@ -9,7 +9,7 @@
 				})
 		})
 		.component('abLista', {
-			templateUrl: './estados/lista/lista.html',
+			templateUrl: './app/estados/lista/lista.html',
 			controller: function (movimientosService) {
                 var vm = this;
                 this.valorCorte = 1;
