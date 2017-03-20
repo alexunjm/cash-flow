@@ -4,7 +4,7 @@ import { Categoria } from './../modelos/categoria';
 import { DatosService } from './../datos.service';
 import { Movimiento } from './../modelos/movimiento';
 import { Tipo } from './../modelos/tipo';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'cf-nuevo',
@@ -36,8 +36,15 @@ export class NuevoComponent implements OnInit {
   }
 
   buildForm() {
+    const currentDate = new Date(Date.now());
+    const pastDate = new Date(Date.now());
+    const futureDate = new Date(Date.now());
+
+    pastDate.setDate(currentDate.getDate() - 5);
+    futureDate.setDate(currentDate.getDate() + 5);
+
     this.nuevoForm = this.formBuilder.group({
-      fecha: [this.movimiento.fecha.toISOString().substring(0, 10)],
+      fecha: [this.movimiento.fecha.toISOString().substring(0, 10), [Validators.required, betweenTwoDatesValidator(pastDate, futureDate)]],
       importe: [this.movimiento.importe, [Validators.required, positiveNumberValidator]],
       tipo: 1,
       categoria: ['', Validators.required]

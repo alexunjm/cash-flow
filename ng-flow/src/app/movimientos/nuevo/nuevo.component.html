@@ -13,6 +13,12 @@
         [ngClass]="{ 'input-error': (nuevoForm.get('fecha').touched || nuevoForm.get('fecha').dirty) && !nuevoForm.get('fecha').valid }"
         formControlName="fecha">
     </div>
+    <div *ngIf="(nuevoForm.get('fecha').touched || nuevoForm.get('fecha').dirty) && nuevoForm.get('fecha').errors">
+      <p *ngIf="nuevoForm.get('fecha').errors.required"
+        class="float-right text-error">El campo es obligatorio</p>
+      <p *ngIf="nuevoForm.get('fecha').errors.betweenTwoDates"
+        class="float-right text-error">La fecha debe de estar comprendida entre hoy y +- 5días</p>
+    </div>
     <div class="row">
       <label for="importe"
         class="column"
