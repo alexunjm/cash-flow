@@ -68,7 +68,4 @@ export class NuevoComponent implements OnInit {
       .subscribe(r => console.log('Movimiento guardado'));
   }
 
-  get showDate() {
-    return JSON.stringify(this.nuevoForm.errors);
-  }
 }
