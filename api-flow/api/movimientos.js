@@ -9,7 +9,7 @@ module.exports = (app, rutaMovimientos) => {
   app.route(rutaMovimientos)
     .get((req, res) => {
       // filtro para el usuario actual
-      let movimientosUsuario = movimientos.filter(m => m.usuario == req.usuario);
+      let movimientosUsuario = getMovimientosUsuario(req.usuario);
       if (movimientosUsuario && movimientosUsuario.length > 0)
         res.json(movimientosUsuario);
       else
@@ -27,6 +27,25 @@ module.exports = (app, rutaMovimientos) => {
     .delete((req, res) => {
       movimientos = [];
       res.status(204).send();
+    });
+  /**
+   * Ruta para obtener los totales
+   */
+  app.route(`${rutaMovimientos}/total`)
+    .get((req, res) => {
+      const total = { ingresos: 0, gastos: 0 };
+      let movimientosUsuario = getMovimientosUsuario(req.usuario);
+      if (movimientosUsuario && movimientosUsuario.length > 0) {
+        movimientosUsuario.forEach(m => {
+          if (m.tipo == 1)
+            total.ingresos += m.importe;
+          else
+            total.gastos += m.importe;
+        });
+        res.json(total);
+      }
+      else
+        res.status(204).send();
     });
   // esto otra ruta va a nivel de un elemento concreto
   // // api/priv/movimientos/159
@@ -59,8 +78,10 @@ module.exports = (app, rutaMovimientos) => {
       } else {
         res.status(404).send(0);
       }
-    })
+    });
 
+
+  var getMovimientosUsuario = (usuario) => movimientos.filter(m => m.usuario == usuario);
   var getMovimientoUsuario = (id, usuario) => movimientos.filter(m => m.usuario == usuario && m._id == id);
 
 

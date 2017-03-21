@@ -5,30 +5,58 @@
 		</mensaje>
 	</ab-cabecera>
 	<br>
-	<label class="control-label" for="importe">Filtrar:</label>
-	<input type="text" name="filtro" placeholder="qué buscas?" class="input" ng-model="$ctrl.valorBuscado">
-	<button class="btn-primary" ng-click="$ctrl.valorCorte=1">Ver todos los movimientos</button>
-	<button class="btn-danger" ng-click="$ctrl.valorCorte=1000">Sólo grandes movimientos</button>
-	<table class="table">
-		<thead>
+	<section name="filtro">
+		<label for="importe"
+		       class="control-label">Filtrar:</label>
+		<input name="filtro"
+		       type="text"
+		       placeholder="qué buscas?"
+		       class="input"
+		       ng-model="$ctrl.valorBuscado">
+		<button name="sin-filtro"
+		        class="btn-primary"
+		        ng-click="$ctrl.valorCorte=1">Ver todos los movimientos</button>
+		<button name="con-filtro"
+		        class="btn-danger"
+		        ng-click="$ctrl.valorCorte=1000">Sólo grandes movimientos</button>
+	</section>
+	<table name="tabla-movimientos"
+	       class="table">
+		<thead name="cabecera-tabla">
 			<tr>
-                <th>Id</th>
-				<th><a href="" ng-click="$ctrl.campo = 'fecha'; $ctrlsentido = !$ctrl.sentido ">Fecha</a>
+				<th>Id</th>
+				<th><a name="orden-fecha"
+					   href=""
+					   ng-click="$ctrl.campo = 'fecha'; $ctrlsentido = !$ctrl.sentido ">Fecha</a>
 				</th>
 				<th>Tipo</th>
 				<th>Categoría</th>
-				<th><a href="" ng-click="$ctrl.campo = 'importe'; $ctrlsentido = !$ctrl.sentido ">Importe</a>
+				<th><a name="orden-importe"
+					   href=""
+					   ng-click="$ctrl.campo = 'importe'; $ctrlsentido = !$ctrl.sentido ">Importe</a>
 				</th>
 				<th>Valoración</th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr ng-repeat="movimiento in $ctrl.movimientos  | filter:$ctrl.valorBuscado |
+		<tbody name="filas-movimientos">
+			<tr name="fila-movimiento"
+			    ng-repeat="movimiento in $ctrl.movimientos  | filter:$ctrl.valorBuscado |
             abGranImporte : $ctrl.valorCorte |
-            orderBy:$ctrl.campo:$ctrl.sentido"
-            ab-fila-movimiento2 movimiento="movimiento">
+            orderBy:$ctrl.campo:$ctrl.sentido">
+				<td class="text-left"><a ui-sref="movimiento({ id:movimiento._id })">{{movimiento._id}}</a> </td>
+				<td class="text-left">{{ movimiento.fecha | date }}</td>
+				<td class="text-left">{{ movimiento.tipo }}</td>
+				<td class="text-left">{{ movimiento.categoria }}</td>
+				<td class="text-left"
+				    ng-class="{'text-success': $ctrl.movimiento.tipo=='Ingreso', 'text-danger' : $ctrl.movimiento.tipo=='Gasto'}">
+					{{ movimiento.importe | number:2 }} €
+				</td>
+				<td class="text-left">
+					<ab-valoracion valor="movimiento.valoracion"
+					               max="10"
+					               solo-lectura="true"></ab-valoracion>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	{{$ctrl.movimientos}}
 </section>

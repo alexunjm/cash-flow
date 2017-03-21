@@ -1,26 +1,23 @@
 (function () {
-
+	const Name = 'Lista';
+	const name = Name.toLowerCase();
 	angular.module('lista', ['ui.router', 'shared'])
 		.config(function ($stateProvider) {
 			$stateProvider
-				.state('lista', {
-					url: '/lista',
-					template: '<ab-lista></ab-lista>'
+				.state(name, {
+					url: '/' + name,
+					template: `<ab-${name}></ab-${name}>`
 				})
 		})
-		.component('abLista', {
-			templateUrl: './app/estados/lista/lista.html',
-			controller: function (movimientosService) {
-                var vm = this;
-                this.valorCorte = 1;
-				/*
-				movimientosService.gettingMovimientos()
-					.success(function (result) {
-						vm.movimientos = result;
-					})
-				*/
-				vm.movimientos = movimientosService.movimientos.query();
-			}
-		})
+		.component('ab' + Name, {
+			templateUrl: `./app/estados/${name}/${name}.html`,
+			controller: ctrl
+		});
+
+	function ctrl(movimientosService) {
+		var vm = this;
+		this.valorCorte = 1;
+		vm.movimientos = movimientosService.movimientos.query();
+	}
 
 }());

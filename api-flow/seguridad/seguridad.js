@@ -33,17 +33,19 @@ function usarSeguridad(app, ruta) {
         // jwt descifra y valida un token
         let sesion = null;
         const authorization = req.get('Authorization');
-        const pieces = authorization.split(' ');
-        if (pieces && pieces.length > 0) {
-            const sessionId = authorization.split(' ')[1];
-            sesion = jwt.verify(sessionId);
+        if (authorization) {
+            const pieces = authorization.split(' ');
+            if (pieces && pieces.length > 0) {
+                const sessionId = authorization.split(' ')[1];
+                sesion = jwt.verify(sessionId);
+            }
+            if (sesion) {
+                req.usuario = sesion.email;
+                next();
+                return;
+            }
         }
-        if (sesion) {
-            req.usuario = sesion.email;
-            next();
-        } else {
-            res.status(401)
-                .send('Credencial inválida');
-        }
+        res.status(401)
+            .send('Credencial inválida');
     })
 }

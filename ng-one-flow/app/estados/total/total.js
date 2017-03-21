@@ -12,14 +12,7 @@
 			templateUrl: './app/estados/total/total.html',
 			controller: function (movimientosService) {
 				var vm = this;
-				/*
-				movimientosService.gettingTotal()
-					.success(function (result) {
-						vm.total = result;
-					})
-					*/
-				// sintáxis síncrona
-				vm.total = movimientosService.total.get();
+				vm.total = movimientosService.movimientos.total();
 			}
 		})
 
