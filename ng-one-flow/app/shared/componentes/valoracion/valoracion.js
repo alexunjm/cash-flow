@@ -57,6 +57,7 @@
 					}
 				}
 				this.marcar = function (indice) {
+					console.log('marcar.indice: ' + indice);
 					if (vm.soloLectura && vm.soloLectura === 'true') {
 						return;
 					}
