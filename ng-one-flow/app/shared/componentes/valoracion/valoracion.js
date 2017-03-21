@@ -16,21 +16,21 @@
 					if (vm.soloLectura && vm.soloLectura === 'true') {
 						return;
 					}
-					vm.valor.estrellas = indice + 1;
+					vm.valor = indice + 1;
 					vm.actualizarEstrellas();
 				};
 				this.actualizarEstrellas = function () {
-					if (!vm.valor) vm.valor = { estrellas: 1 };
+					if (!vm.valor) vm.valor = 1;
 					vm.estrellas = [];
 					for (var i = 0; i < vm.maximo; i++) {
 						var estrella = {
-							marcada: (i < vm.valor.estrellas)
+							marcada: (i < vm.valor)
 						};
 						vm.estrellas.push(estrella);
 					}
 				};
 			},
-		}).component('abValoracionBind', {
+		}).component('abValoracionBinded', {
 			templateUrl: './app/shared/componentes/valoracion/tpl-valoracion.html',
 			require: {
 				model: 'ngModel'
@@ -42,31 +42,34 @@
 			controller: function () {
 				var vm = this;
 				this.$onInit = function () {
-					this.model.$render = () => {
-						vm.value = this.model.$viewValue;
+					vm.estrellas = [];
+					for (var i = 0; i < vm.maximo; i++) {
+						var estrella = {
+							marcada: (i < vm.value)
+						};
+						vm.estrellas.push(estrella);
 					}
-					vm.actualizarEstrellas();
-				}
-				this.$onChange = () => {
-					this.model.$setViewValue(vm.value);
+					vm.model.$render = () => {
+						console.log('$render.value: ' + vm.value);
+						console.log('$render.model.$viewValue: ' + vm.model.$viewValue);
+						vm.value = vm.model.$viewValue;
+						vm.actualizarEstrellas();
+					}
 				}
 				this.marcar = function (indice) {
 					if (vm.soloLectura && vm.soloLectura === 'true') {
 						return;
 					}
-					vm.model.estrellas = indice + 1;
+					vm.value = indice + 1;
 					vm.actualizarEstrellas();
+					vm.model.$setViewValue(vm.value);
+					console.log('marcar.model.$setViewValue: ' + vm.model.$viewValue);
 				};
 				this.actualizarEstrellas = function () {
-					if (!vm.value) vm.value = { estrellas: 1 };
-					vm.estrellas = [];
 					for (var i = 0; i < vm.maximo; i++) {
-						var estrella = {
-							marcada: (i < vm.value.estrellas)
-						};
-						vm.estrellas.push(estrella);
+						vm.estrellas[i].marcada = (i < vm.value)
 					}
-					this.model.$setViewValue(vm.value);
+					console.log('actualizarEstrellas.value: ' + vm.value);
 				};
 			},
 		});

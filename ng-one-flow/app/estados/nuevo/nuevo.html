@@ -98,19 +98,22 @@
 							<ab-valoracion valor="$ctrl.nuevoMovimiento.valoracion"
 							               maximo="10"
 							               solo-lectura="false"></ab-valoracion>
-							<ab-valoracion-bind ng-model="$ctrl.nuevoMovimiento.valoracion"
-							                    maximo="10"
-							                    solo-lectura="false"></ab-valoracion-bind>
+							<br/>
+							<ab-valoracion-binded ng-model="$ctrl.nuevoMovimiento.valoracion"
+							                      maximo="10"
+							                      solo-lectura="false"></ab-valoracion-binded>
+							<br/>
 							<input type="number"
-							       ng-model="$ctrl.nuevoMovimiento.valoracion.estrellas">
+							       ng-model="$ctrl.nuevoMovimiento.valoracion">
+							<br/>
 							<input type="number"
-							       ng-model="$ctrl.nuevoMovimiento.valoracion.estrellas">
+							       ng-model="$ctrl.nuevoMovimiento.valoracion">
+							<br/> {{$ctrl.nuevoMovimiento}}
 						</div>
 					</div>
 				</div>
 			</div>
 			</div>
-			{{$ctrl.nuevoMovimiento}}
 			<div name="boton-guardar"
 			     class="text-right">
 				<button name="guardar"
