@@ -38,9 +38,9 @@ module.exports = (app, rutaMovimientos) => {
       if (movimientosUsuario && movimientosUsuario.length > 0) {
         movimientosUsuario.forEach(m => {
           if (m.tipo == 1)
-            total.ingresos += m.importe;
+            total.ingresos += m.importe ? m.importe : 0;
           else
-            total.gastos += m.importe;
+            total.gastos += m.importe ? m.importe : 0;
         });
         res.json(total);
       }

@@ -51,6 +51,7 @@
 						       class="control-label">Fecha</label>
 						<div class="controls">
 							<input name="fecha"
+							       format-date
 							       type="date"
 							       placeholder=""
 							       class="input"
@@ -97,11 +98,16 @@
 							<ab-valoracion valor="$ctrl.nuevoMovimiento.valoracion"
 							               maximo="10"
 							               solo-lectura="false"></ab-valoracion>
+							<ab-valoracion-bind ng-model="$ctrl.nuevoMovimiento.valoracion"
+							                    valor="$ctrl.nuevoMovimiento.valoracion"
+							                    maximo="10"
+							                    solo-lectura="false"></ab-valoracion-bind>
 						</div>
 					</div>
 				</div>
 			</div>
 			</div>
+			{{$ctrl.nuevoMovimiento}}
 			<div name="boton-guardar"
 			     class="text-right">
 				<button name="guardar"

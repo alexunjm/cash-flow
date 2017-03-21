@@ -38,6 +38,7 @@
 			vm.nuevoMovimiento.tipo = 1;
 			vm.nuevoMovimiento.esIngreso = 1;
 			vm.nuevoMovimiento.fecha = new Date();
+			vm.nuevoMovimiento.valoracion = { estrellas: 1 };
 			vm.tipos = maestrosService.tipos.query();
 			maestrosService.categorias.query().$promise.then(res => {
 				vm.categorias = res;

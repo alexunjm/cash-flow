@@ -2,38 +2,63 @@
 	angular.module('abValoracion', [])
 		.component('abValoracion', {
 			templateUrl: './app/shared/componentes/valoracion/tpl-valoracion.html',
-			controller: function ($scope, $element, $attrs) {
+			bindings: {
+				valor: '=',
+				maximo: '@',
+				soloLectura: '@'
+			},
+			controller: function () {
 				var vm = this;
 				this.$onInit = function () {
-					console.log('abValoracion.actualizarEstrellas');
-					console.table($scope);
-					console.log('abValoracion.$scope.$ctrl.maximo: ' + $scope.$ctrl.maximo);
-					console.log('abValoracion.vm.soloLectura: ' + this.soloLectura);
 					vm.actualizarEstrellas();
 				}
 				this.marcar = function (indice) {
 					if (vm.soloLectura && vm.soloLectura === 'true') {
 						return;
 					}
-					vm.valor = indice + 1;
+					vm.valor.estrellas = indice + 1;
 					vm.actualizarEstrellas();
 				};
 				this.actualizarEstrellas = function () {
-					if (!vm.valor) vm.valor = 1;
+					if (!vm.valor) vm.valor = { estrellas: 1 };
 					vm.estrellas = [];
 					for (var i = 0; i < vm.maximo; i++) {
 						var estrella = {
-							marcada: (i < vm.valor)
+							marcada: (i < vm.valor.estrellas)
 						};
 						vm.estrellas.push(estrella);
 					}
-					console.table(vm.estrellas);
 				};
 			},
+		}).component('abValoracionBind', {
+			templateUrl: './app/shared/componentes/valoracion/tpl-valoracion.html',
 			bindings: {
 				valor: '=',
 				maximo: '@',
 				soloLectura: '@'
+			},
+			controller: function () {
+				var vm = this;
+				this.$onInit = function () {
+					vm.actualizarEstrellas();
+				}
+				this.marcar = function (indice) {
+					if (vm.soloLectura && vm.soloLectura === 'true') {
+						return;
+					}
+					vm.valor.estrellas = indice + 1;
+					vm.actualizarEstrellas();
+				};
+				this.actualizarEstrellas = function () {
+					if (!vm.valor) vm.valor = { estrellas: 1 };
+					vm.estrellas = [];
+					for (var i = 0; i < vm.maximo; i++) {
+						var estrella = {
+							marcada: (i < vm.valor.estrellas)
+						};
+						vm.estrellas.push(estrella);
+					}
+				};
 			},
 		});
 

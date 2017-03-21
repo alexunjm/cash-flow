@@ -24,8 +24,8 @@
 					<div class="control-group">
 						<label class="control-label"
 						       for="categ">Categoría</label>
-						<div class="controls">
-							{{ $ctrl.movimiento.categoria }}
+						<div class="controls"
+						     ng-bind="$ctrl.movimiento.categoria">
 						</div>
 					</div>
 				</div>
@@ -38,7 +38,8 @@
 							       name="fecha"
 							       placeholder=""
 							       class="input"
-							       ng-model="$ctrl.movimiento.fecha">
+							       ng-model="$ctrl.movimiento.fecha"
+							       format-date>
 						</div>
 					</div>
 					<div class="control-group">
