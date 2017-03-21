@@ -1,21 +1,10 @@
+import { positiveNumberValidator, betweenTwoDatesValidator } from '../../shared/custom-validators';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
 import { Categoria } from './../modelos/categoria';
 import { DatosService } from './../datos.service';
 import { Movimiento } from './../modelos/movimiento';
 import { Tipo } from './../modelos/tipo';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-
-interface ResponseValidator {
-  [key: string]: boolean;
-}
-
-function positiveNumberValidator(control: AbstractControl): ResponseValidator {
-  if (control.value !== undefined && (isNaN(control.value) || control.value < 0)) {
-    return { 'positive': true };
-  }
-  return null;
-}
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'cf-nuevo',
@@ -47,8 +36,15 @@ export class NuevoComponent implements OnInit {
   }
 
   buildForm() {
+    const currentDate = new Date(Date.now());
+    const pastDate = new Date(Date.now());
+    const futureDate = new Date(Date.now());
+
+    pastDate.setDate(currentDate.getDate() - 6);
+    futureDate.setDate(currentDate.getDate() + 5);
+
     this.nuevoForm = this.formBuilder.group({
-      fecha: [this.movimiento.fecha.toISOString().substring(0, 10)],
+      fecha: [this.movimiento.fecha.toISOString().substring(0, 10), [Validators.required, betweenTwoDatesValidator(pastDate, futureDate)]],
       importe: [this.movimiento.importe, [Validators.required, positiveNumberValidator]],
       tipo: 1,
       categoria: ['', Validators.required]
@@ -71,4 +67,5 @@ export class NuevoComponent implements OnInit {
       .postMovimiento$(this.movimiento)
       .subscribe(r => console.log('Movimiento guardado'));
   }
+
 }
