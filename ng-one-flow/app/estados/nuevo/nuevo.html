@@ -99,9 +99,12 @@
 							               maximo="10"
 							               solo-lectura="false"></ab-valoracion>
 							<ab-valoracion-bind ng-model="$ctrl.nuevoMovimiento.valoracion"
-							                    valor="$ctrl.nuevoMovimiento.valoracion"
 							                    maximo="10"
 							                    solo-lectura="false"></ab-valoracion-bind>
+							<input type="number"
+							       ng-model="$ctrl.nuevoMovimiento.valoracion.estrellas">
+							<input type="number"
+							       ng-model="$ctrl.nuevoMovimiento.valoracion.estrellas">
 						</div>
 					</div>
 				</div>
