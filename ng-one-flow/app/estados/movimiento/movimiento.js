@@ -1,7 +1,7 @@
 (function () {
 	const Name = 'Movimiento';
 	const name = Name.toLowerCase();
-	angular.module('movimiento', ['ui.router', 'shared'])
+	angular.module(name, ['ui.router', 'shared'])
 		.config(function ($stateProvider) {
 			$stateProvider
 				.state(name, {

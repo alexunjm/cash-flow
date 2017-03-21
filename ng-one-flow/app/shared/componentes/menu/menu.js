@@ -1,9 +1,8 @@
 (function () {
 	angular.module('abMenu', ['ui.router'])
-		.controller('MenuCtrl', menuCtrl)
-		.component('abMenuNavegacion', {
-			templateUrl: './app/shared/componentes/menu/tpl-menu-navegacion.html',
-			controller: 'MenuCtrl'
+		.component('abMenu', {
+			templateUrl: './app/shared/componentes/menu/tpl-menu.html',
+			controller: menuCtrl
 		})
 
 	function menuCtrl($state) {

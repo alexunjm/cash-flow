@@ -1,5 +1,5 @@
 (function () {
-	angular.module('servicios').service('movimientosService', movimientosService);
+	angular.module('abServicios').service('movimientosService', movimientosService);
 
 	function movimientosService($resource, environment) {
 		this.movimientos = $resource(

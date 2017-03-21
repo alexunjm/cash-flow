@@ -1,7 +1,7 @@
 (function () {
 	const Name = 'Lista';
 	const name = Name.toLowerCase();
-	angular.module('lista', ['ui.router', 'shared'])
+	angular.module(name, ['ui.router', 'shared'])
 		.config(function ($stateProvider) {
 			$stateProvider
 				.state(name, {

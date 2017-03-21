@@ -1,4 +1,6 @@
-<span ng-repeat="estrella in $ctrl.estrellas" ng-click="$ctrl.marcar($index)">
+{{$ctrl.maximo }} {{$ctrl.soloLectura }} {{$ctrl.valor }}
+<span ng-repeat="estrella in $ctrl.estrellas"
+      ng-click="$ctrl.marcar($index)">
         <span class="lead"
                 ng-class=
                 "{'text-danger h3': estrella.marcada,

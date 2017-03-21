@@ -1,6 +1,6 @@
 (function () {
 
-	angular.module('servicios').service('maestrosService', maestrosService);
+	angular.module('abServicios').service('maestrosService', maestrosService);
 
 	function maestrosService($resource, environment) {
 
