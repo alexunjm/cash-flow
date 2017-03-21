@@ -1,10 +1,14 @@
 {
   "name": "api-flow",
   "version": "1.0.0",
-  "description": "",
+  "description": "API para control de flujo de movimientos de caja",
   "main": "index.js",
   "author": "@albertobasalo",
   "license": "ISC",
+  "repository": {
+    "url": "https://github.com/AgoraBinaria/cash-flow",
+    "type": "git"
+  },
   "scripts": {
     "start": "node index.js"
   },
