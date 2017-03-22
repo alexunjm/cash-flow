@@ -15,7 +15,7 @@ import { NuevoComponent } from './nuevo/nuevo.component';
  */
 const routes: Routes = [
   {
-    path: 'movimientos',
+    path: '',
     component: MovimientosComponent, // tiene sus cosas y ... un router-oulet para sus hijos
     children: [ // rutas hijas, se verán dentro del router-oulet componente contenedor
       {
