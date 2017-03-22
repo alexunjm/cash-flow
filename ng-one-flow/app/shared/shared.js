@@ -1,5 +1,5 @@
 (function () {
 
-	angular.module('shared', ['abComponentes', 'abFiltros', 'servicios'])
+	angular.module('shared', ['abComponentes', 'abFiltros', 'abServicios'])
 
 }());

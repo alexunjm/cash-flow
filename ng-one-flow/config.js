@@ -7,15 +7,15 @@
 			});
 	});
 
-	angular.module('cashFlow').constant('environment',{ apiUrl: 'http://localhost:3030'});	
+	angular.module('cashFlow').constant('environment', { apiUrl: 'http://localhost:3030', prefix: 'ab' });
 	angular.module('cashFlow').config(configuradorInterceptores);
 
 	function configuradorInterceptores($httpProvider) {
 		$httpProvider.interceptors.push(funcionInterceptoraSeguridad);
 	}
 
-	function funcionInterceptoraSeguridad($injector, $q,  $rootScope) {
-		var interceptor = {}; 
+	function funcionInterceptoraSeguridad($injector, $q, $rootScope) {
+		var interceptor = {};
 
 		interceptor.request = function (request) {
 			request.headers["Authorization"] = 'Basic ' + localStorage.getItem("sessionId");
@@ -36,4 +36,4 @@
 		}
 		return interceptor;
 	}
-} ());
+}());

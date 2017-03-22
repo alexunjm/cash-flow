@@ -1,26 +1,21 @@
 (function () {
-
-	angular.module('total', ['ui.router', 'shared'])
+	const Name = 'Total';
+	const name = Name.toLowerCase();
+	angular.module(name, ['ui.router', 'shared'])
 		.config(function ($stateProvider) {
 			$stateProvider
-				.state('total', {
-					url: '/',
-					template: '<ab-total></ab-total>'
+				.state(name, {
+					url: '/' + name,
+					template: `<ab-${name}></ab-${name}>`
 				})
 		})
-		.component('abTotal', {
-			templateUrl: './app/estados/total/total.html',
-			controller: function (movimientosService) {
-				var vm = this;
-				/*
-				movimientosService.gettingTotal()
-					.success(function (result) {
-						vm.total = result;
-					})
-					*/
-				// sintáxis síncrona
-				vm.total = movimientosService.total.get();
-			}
-		})
+		.component('ab' + Name, {
+			templateUrl: `./app/estados/${name}/${name}.html`,
+			controller: ctrl
+		});
 
+	function ctrl(movimientosService) {
+		var vm = this;
+		vm.total = movimientosService.movimientos.total();
+	}
 }());

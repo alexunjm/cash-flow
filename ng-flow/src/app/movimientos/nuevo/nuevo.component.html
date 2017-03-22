@@ -2,59 +2,66 @@
   <h5>Nuevo Movimiento</h5>
 </header>
 <main>
-  <form (ngSubmit)="alGuardarMovimiento()" [formGroup]="nuevoForm" novalidate>
+  <form (ngSubmit)="alGuardarMovimiento()"
+        [formGroup]="nuevoForm"
+        novalidate>
     <div class="row">
       <label for="fecha"
-        class="column"
-        [ngClass]="{ 'text-error': (nuevoForm.get('fecha').touched || nuevoForm.get('fecha').dirty) && !nuevoForm.get('fecha').valid }">Fecha: </label>
-      <input type="date"
-        name="fecha"
-        class="column"
-        [ngClass]="{ 'input-error': (nuevoForm.get('fecha').touched || nuevoForm.get('fecha').dirty) && !nuevoForm.get('fecha').valid }"
-        formControlName="fecha">
+             class="column"
+             [ngClass]="{ 'text-error': (nuevoForm.get('fecha').touched || nuevoForm.get('fecha').dirty) && !nuevoForm.get('fecha').valid }">Fecha: </label>
+      <input name="fecha"
+             type="date"
+             name="fecha"
+             class="column"
+             [ngClass]="{ 'input-error': (nuevoForm.get('fecha').touched || nuevoForm.get('fecha').dirty) && !nuevoForm.get('fecha').valid }"
+    
+             formControlName="fecha">
     </div>
     <div *ngIf="(nuevoForm.get('fecha').touched || nuevoForm.get('fecha').dirty) && nuevoForm.get('fecha').errors">
       <p *ngIf="nuevoForm.get('fecha').errors.required"
-        class="float-right text-error">El campo es obligatorio</p>
+         class="float-right text-error">El campo es obligatorio</p>
       <p *ngIf="nuevoForm.get('fecha').errors.betweenTwoDates"
-        class="float-right text-error">La fecha debe de estar comprendida entre hoy y +- 5días</p>
+         class="float-right text-error">La fecha debe de estar comprendida entre hoy y +- 5días</p>
     </div>
     <div class="row">
       <label for="importe"
-        class="column"
-        [ngClass]="{ 'text-error': (nuevoForm.get('importe').touched || nuevoForm.get('importe').dirty) && !nuevoForm.get('importe').valid }">Importe: </label>
-      <input type="number"
-        name="importe"
-        class="column"
-        [ngClass]="{ 'input-error': (nuevoForm.get('importe').touched || nuevoForm.get('importe').dirty) && !nuevoForm.get('importe').valid }"
-        formControlName="importe">
+             class="column"
+             [ngClass]="{ 'text-error': (nuevoForm.get('importe').touched || nuevoForm.get('importe').dirty) && !nuevoForm.get('importe').valid }">Importe: </label>
+      <input name="importe"
+             type="number"
+             class="column"
+             [ngClass]="{ 'input-error': (nuevoForm.get('importe').touched || nuevoForm.get('importe').dirty) && !nuevoForm.get('importe').valid }"
+    
+             formControlName="importe">
     </div>
     <div *ngIf="(nuevoForm.get('importe').touched || nuevoForm.get('importe').dirty) && nuevoForm.get('importe').errors">
       <p *ngIf="nuevoForm.get('importe').errors.required"
-        class="float-right text-error">El campo es obligatorio</p>
+         class="float-right text-error">El campo es obligatorio</p>
       <p *ngIf="nuevoForm.get('importe').errors.positive"
-        class="float-right text-error">El importe debe ser positivo</p>
+         class="float-right text-error">El importe debe ser positivo</p>
     </div>
     <div class="row">
       <label for="tipo"
-        class="column">Tipo: </label>
+             class="column">Tipo: </label>
       <div *ngFor="let tipo of tipos"
-        class="column">
-        <input type="radio"
-          name="tipo"
-          [value]="tipo.id"
-          formControlName="tipo">
+           class="column">
+        <input name="tipo"
+               type="radio"
+               name="tipo"
+               [value]="tipo.id"
+               formControlName="tipo">
         <span class="{{ tipo.texto | lowercase }}">{{ tipo.texto }}</span>
       </div>
     </div>
     <div class="row">
       <label for="categoria"
-        class="column"
-        [ngClass]="{ 'text-error': (nuevoForm.get('categoria').touched || nuevoForm.get('categoria').dirty) && !nuevoForm.get('categoria').valid }">Categoría: </label>
+             class="column"
+             [ngClass]="{ 'text-error': (nuevoForm.get('categoria').touched || nuevoForm.get('categoria').dirty) && !nuevoForm.get('categoria').valid }">Categoría: </label>
       <select name="categoria"
-        class="column"
-        [ngClass]="{ 'input-error': (nuevoForm.get('categoria').touched || nuevoForm.get('categoria').dirty) && !nuevoForm.get('categoria').valid }"
-        formControlName="categoria">
+              class="column"
+              [ngClass]="{ 'input-error': (nuevoForm.get('categoria').touched || nuevoForm.get('categoria').dirty) && !nuevoForm.get('categoria').valid }"
+    
+              formControlName="categoria">
           <option value="" selected>Selecciona una categoría...</option>
             <option *ngFor="let categoria of categorias" [value]="categoria.id">
               {{ categoria.texto }}
@@ -63,11 +70,11 @@
     </div>
     <div *ngIf="(nuevoForm.get('categoria').touched || nuevoForm.get('categoria').dirty) && nuevoForm.get('categoria').errors">
       <p *ngIf="nuevoForm.get('categoria').errors.required"
-        class="float-right text-error">El campo es obligatorio</p>
+         class="float-right text-error">El campo es obligatorio</p>
     </div>
     <div class="row">
       <button type="submit"
-        [disabled]="!nuevoForm.valid">Crear movimiento</button>
+              [disabled]="!nuevoForm.valid">Crear movimiento</button>
     </div>
   </form>
   <aside class="container">

@@ -1,22 +1,20 @@
 (function () {
-	angular.module('registro', ['ui.router', 'shared'])
+	const Name = 'Registro';
+	const name = Name.toLowerCase();
+	angular.module(name, ['ui.router', 'shared'])
 		.config(function ($stateProvider) {
 			$stateProvider
-				.state('registro', {
-					url: '/registro',
-					template: '<ab-registro></ab-registro>'
+				.state(name, {
+					url: '/' + name,
+					template: `<ab-${name}></ab-${name}>`
 				})
 		})
-		.component('abRegistro', {
-			templateUrl: './app/estados/registro/registro.html',
-			controller: registroCtrl
-		})
+		.component('ab' + Name, {
+			templateUrl: `./app/estados/${name}/${name}.html`,
+			controller: ctrl
+		});
 
-	// El rootScope mantiene un ViewModel al que se puede 'bindear' cualquier vista
-	// Es cómodo usarlo para compartir datos de infraestructura
-	// No conviene abusar, para reducir la posibilidad de conflictos y polución de la memoria
-	// El servicio $cookieStore, viene en el módulo ngCookies
-	function registroCtrl($state, $http, $rootScope, environment) {
+	function ctrl($state, $http, $rootScope, environment) {
 		var urlBase = environment.apiUrl + "/api/pub/";
 		var vm = this;
 		vm.usuario = {};
@@ -25,7 +23,7 @@
 				.then(function (respuesta) {
 					$rootScope.usuario = vm.usuario.email;
 					$rootScope.mensaje = 'recién creado';
-				  localStorage.setItem("sessionId", respuesta.data);
+					localStorage.setItem("sessionId", respuesta.data);
 					$state.go("total");
 				}, function (respuesta) {
 					$rootScope.mensaje = respuesta.data;

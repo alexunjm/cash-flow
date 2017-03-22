@@ -1,29 +1,14 @@
 (function () {
-
-	angular.module('abComponentes', ['abValoracion', 'abMenu'])
-		.component('abContenido', {
-			template: '<div class="container text-center" style="padding-top:60px;" ui-view></div>'
-		})
-		.component('abFilaMovimiento', {
-			templateUrl: './app/shared/componentes/tpl-fila-movimiento.html',
-			bindings: {
-				movimiento: '='
-			}
-		})
-		.component('abContador', {
-			templateUrl: './app/shared/componentes/tpl-contador.html',
-			bindings: {
-				texto: '@',
-				valor: '='
-			}
-		})
-		.directive('abFilaMovimiento2', function () {
+	angular
+		.module('abComponentes', ['abCabecera', 'abContador', 'abContenido', 'abFirma', 'abMenu', 'abValoracion'])
+		.directive("formatDate", function () {
 			return {
-				restrict: 'A',
-				templateUrl: './app/shared/componentes/tpl-fila-movimiento2.html',
-				scope: {
-					movimiento: '='
+				require: 'ngModel',
+				link: function (scope, elem, attr, controller) {
+					if (attr['type'] === 'date') {
+						controller.$formatters.push((modelValue) => modelValue ? new Date(modelValue) : null);
+					}
 				}
-			}
-		})
+			};
+		});
 }());
