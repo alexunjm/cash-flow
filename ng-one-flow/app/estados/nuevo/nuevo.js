@@ -29,10 +29,6 @@
 		vm.categoriasPorTipo = function () {
 			vm.categoriasTipo = vm.categorias.filter(c => c.tipo === vm.nuevoMovimiento.tipo);
 		}
-		vm.cambiarTipo = function (tipoId) {
-			vm.nuevoMovimiento.tipo = tipoId
-			vm.categoriasPorTipo();
-		}
 		vm.iniciar = function () {
 			vm.nuevoMovimiento = new movimientosService.movimientos();
 			vm.nuevoMovimiento.tipo = 1;
@@ -42,7 +38,7 @@
 			vm.tipos = maestrosService.tipos.query();
 			maestrosService.categorias.query().$promise.then(res => {
 				vm.categorias = res;
-				vm.cambiarTipo(vm.nuevoMovimiento.tipo);
+				vm.categoriasPorTipo();
 			});
 		}
 		vm.iniciar();

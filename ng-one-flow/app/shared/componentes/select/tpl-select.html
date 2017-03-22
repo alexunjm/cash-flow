@@ -1,0 +1,6 @@
+<select name="$ctrl.nuevo"
+        ng-model="$ctrl.valor"
+        ng-change="$ctrl.seleccionar()">
+    <option value="" selected>{{$ctrl.default}}</option>
+    <option ng-repeat="opcion in $ctrl.opciones" value="{{opcion.id}}">	{{ opcion.texto }}	</option>
+</select>
