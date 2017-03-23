@@ -1,0 +1,9 @@
+<span ng-repeat="opcion in $ctrl.opciones"
+      class="column">
+  <input name="{{$ctrl.nombre}}"
+         type="radio"
+         value="{{opcion.id}}"
+         ng-checked="{{$ctrl.valor==opcion.id}}"
+         ng-click="$ctrl.seleccionar(opcion.id)">
+  <span class="{{ opcion.texto | lowercase }}">{{ opcion.texto }}</span>
+</span>

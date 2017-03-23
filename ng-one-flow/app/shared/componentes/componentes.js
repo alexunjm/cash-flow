@@ -1,6 +1,14 @@
 (function () {
 	angular
-		.module('abComponentes', ['abCabecera', 'abContador', 'abContenido', 'abFirma', 'abMenu', 'abValoracion'])
+		.module('abComponentes', [
+			'abCabecera',
+			'abContador',
+			'abContenido',
+			'abFirma',
+			'abMenu',
+			'abRadio',
+			'abSelect',
+			'abValoracion'])
 		.directive("formatDate", function () {
 			return {
 				require: 'ngModel',

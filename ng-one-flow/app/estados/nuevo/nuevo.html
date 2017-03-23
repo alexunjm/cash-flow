@@ -17,14 +17,11 @@
 					     class="control-group">
 						<label for="tipo"
 						       class="column">Tipo: </label>
-						<div ng-repeat="tipo in $ctrl.tipos"
-						     class="column">
-							<input name="tipo"
-							       type="radio"
-							       value="{{tipo.id}}"
-							       ng-checked="{{$ctrl.nuevoMovimiento.tipo==tipo.id}}"
-							       ng-click="$ctrl.cambiarTipo(tipo.id)">
-							<span class="{{ tipo.texto | lowercase }}">{{ tipo.texto }}</span>
+						<div class="controls">
+							<ab-radio nombre="tipos"
+							          opciones="$ctrl.tipos"
+							          ng-model="$ctrl.nuevoMovimiento.tipo"
+							          ng-change="$ctrl.categoriasPorTipo()"></ab-radio>
 						</div>
 					</div>
 				</div>
@@ -34,11 +31,10 @@
 						<label for="categoria"
 						       class="control-label">Categoría</label>
 						<div class="controls">
-							<select name="categoria"
-							        ng-model="$ctrl.nuevoMovimiento.categoria">
-								<option value="" selected>Selecciona una categoría...</option>
-								<option ng-repeat="categoria in $ctrl.categoriasTipo" value="{{categoria.id}}">	{{ categoria.texto }}	</option>
-						</select>
+							<ab-select nombre="categorias"
+							           default="Selecciona una categoría..."
+							           opciones="$ctrl.categoriasTipo"
+							           ng-model="$ctrl.nuevoMovimiento.categoria"></ab-select>
 						</div>
 					</div>
 				</div>
