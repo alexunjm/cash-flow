@@ -21,9 +21,8 @@
 		vm.registrar = function () {
 			apiService.usuarios.registrar().$promise
 				.then(token => {
-					console.table(token);
-					$rootScope.usuario = vm.usuario.email;
-					$rootScope.mensaje = 'recién creado';
+					$rootScope.$emit('usuario', vm.usuario.email);
+					$rootScope.$emit('mensaje', 'recién creado');
 					localStorage.setItem("sessionId", token);
 					$state.go("total");
 				}, fallo => {
@@ -33,9 +32,8 @@
 		vm.entrar = function () {
 			apiService.usuarios.entrar().$promise
 				.then(data => {
-					console.table(data);
-					$rootScope.usuario = vm.usuario.email;
-					$rootScope.mensaje = 'recién entrado';
+					$rootScope.$emit('usuario', vm.usuario.email);
+					$rootScope.$emit('mensaje', 'recién entrado');
 					localStorage.setItem("sessionId", data.token);
 					$state.go("total");
 				}, fallo => {

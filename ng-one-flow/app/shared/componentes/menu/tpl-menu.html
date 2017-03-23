@@ -1,5 +1,6 @@
 <!--Se elimina la referencia al controlador, y se establece desde la directiva-->
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top"
+     role="navigation">
 	<div class="navbar-inner">
 		<div class="container">
 			<ul class="nav navbar-nav">
@@ -11,6 +12,13 @@
 				</li>
 				<li ng-class="{ active: $ctrl.soyElEstadoActivo('lista') }">
 					<a ui-sref="lista">Lista</a>
+				</li>
+				<li ng-if="$ctrl.usuario">
+					<a href="">{{ $ctrl.usuario }}</a>
+				</li>
+				<li ng-if="$ctrl.mensaje"
+				    class="text-muted">
+					<a href="">{{ $ctrl.mensaje }}</a>
 				</li>
 			</ul>
 		</div>
