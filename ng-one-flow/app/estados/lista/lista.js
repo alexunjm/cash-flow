@@ -14,10 +14,10 @@
 			controller: ctrl
 		});
 
-	function ctrl(movimientosService) {
+	function ctrl(apiService) {
 		var vm = this;
 		this.valorCorte = 1;
-		vm.movimientos = movimientosService.movimientos.query();
+		vm.movimientos = apiService.movimientos.query();
 	}
 
 }());

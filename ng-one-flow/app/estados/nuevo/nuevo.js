@@ -14,7 +14,7 @@
 			controller: ctrl
 		});
 
-	function ctrl(movimientosService, maestrosService) {
+	function ctrl(apiService) {
 		var vm = this;
 		vm.guardarMovimiento = function () {
 			vm.nuevoMovimiento.fecha = new Date(vm.nuevoMovimiento.fecha);
@@ -30,16 +30,19 @@
 			vm.categoriasTipo = vm.categorias.filter(c => c.tipo === vm.nuevoMovimiento.tipo);
 		}
 		vm.iniciar = function () {
-			vm.nuevoMovimiento = new movimientosService.movimientos();
+			vm.nuevoMovimiento = new apiService.movimientos();
 			vm.nuevoMovimiento.tipo = 1;
 			vm.nuevoMovimiento.esIngreso = 1;
 			vm.nuevoMovimiento.fecha = new Date();
 			vm.nuevoMovimiento.valoracion = 3;
-			vm.tipos = maestrosService.tipos.query();
-			maestrosService.categorias.query().$promise.then(res => {
-				vm.categorias = res;
-				vm.categoriasPorTipo();
+			apiService.maestros.tipos().$promise.then(res => {
+				vm.tipos = res;
+				apiService.maestros.categorias().$promise.then(res => {
+					vm.categorias = res;
+					vm.categoriasPorTipo();
+				});
 			});
+
 		}
 		vm.iniciar();
 	}
