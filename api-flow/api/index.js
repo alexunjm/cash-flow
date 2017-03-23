@@ -11,5 +11,6 @@ module.exports = app => {
     usuarios(app, '/api/pub/usuarios');
     sesiones(app, '/api/pub/sesiones');
     maestros(app, '/api/pub/maestros');
+    movimientos(app, '/api/priv/movimientos')
     contactos(app, '/api/priv/contactos');
 }
