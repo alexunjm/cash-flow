@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 // Array con las rutas de este módulo
 const routes: Routes = [
   { path: 'inicio', redirectTo: '' },
+  { path: '', loadChildren: './casa/casa.module#CasaModule'},
   { path: 'movimientos', loadChildren: './movimientos/movimientos.module#MovimientosModule'},
   { path: 'contacto', loadChildren: './contacto/contacto.module#ContactoModule'}
   // { path: 'contacto', redirectTo: '' },
