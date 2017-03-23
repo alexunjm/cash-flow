@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="column">
+      <form [formGroup]="contactoForm" novalidate>
+        <fieldset>
+          <label for="emailField"
+            [ngClass]="{ 'text-error': (contactoForm.get('email').touched || contactoForm.get('email').dirty) && !contactoForm.get('email').valid }">
+            Email
+          </label>
+          <input type="text"
+            placeholder="Email"
+            id="emailField"
+            formControlName="email">
+          <div *ngIf="(contactoForm.get('email').touched || contactoForm.get('email').dirty) && contactoForm.get('email').errors">
+            <p *ngIf="contactoForm.get('email').errors.required"
+              class="float-right text-error">El campo es obligatorio</p>
+          </div>
+          <label for="subjectField"
+            [ngClass]="{ 'text-error': (contactoForm.get('subject').touched || contactoForm.get('subject').dirty) && !contactoForm.get('subject').valid }">
+            Asunto
+            </label>
+          <input type="text" placeholder="Asunto" id="subjectField" formControlName="subject">
+          <div *ngIf="(contactoForm.get('subject').touched || contactoForm.get('subject').dirty) && contactoForm.get('subject').errors">
+            <p *ngIf="contactoForm.get('subject').errors.required"
+              class="float-right text-error">El campo es obligatorio</p>
+          </div>
+          <label for="descriptionField"
+            [ngClass]="{ 'text-error': (contactoForm.get('description').touched || contactoForm.get('description').dirty) && !contactoForm.get('description').valid }">
+            Descripción
+          </label>
+          <textarea placeholder="Descripción" id="descriptionField" formControlName="description"></textarea>
+          <div *ngIf="(contactoForm.get('description').touched || contactoForm.get('description').dirty) && contactoForm.get('description').errors">
+            <p *ngIf="contactoForm.get('description').errors.required"
+              class="float-right text-error">El campo es obligatorio</p>
+          </div>
+          <input class="button-primary" type="submit" value="Enviar" [disabled]="!contactoForm.valid">
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

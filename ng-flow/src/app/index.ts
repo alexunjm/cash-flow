@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CasaModule } from './casa/casa.module';
 import { NgModule } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SharedModule } from './shared/shared.module'; // Módulo propio compartido
 
 export { AppComponent } from './app.component';
 export { AppRoutingModule } from './app-routing.module';
@@ -13,8 +12,6 @@ export { BrowserModule } from '@angular/platform-browser';
 export { CasaModule } from './casa/casa.module';
 export { NgModule } from '@angular/core';
 export { RouterTestingModule } from '@angular/router/testing';
-export { SharedModule } from './shared/shared.module'; // Módulo propio compartido
-
 
 /**
  * importación de módulos con objetos y utilidades comunes del framework y propios
@@ -30,7 +27,6 @@ export const appConfig = {
     AppRoutingModule, // el módulo de rutas ya configurado
     BrowserModule,
     CasaModule,
-    SharedModule,
     UserModule
   ],
   bootstrap: [ // componente raíz para el arranque
@@ -44,8 +40,7 @@ export const appTestConfig = {
   ],
   imports: [ // otros módulos que necesitamos para que este funcione
     RouterTestingModule, // el módulo de rutas ya configurado
-    BrowserModule,
-    SharedModule
+    BrowserModule
   ],
   bootstrap: [ // componente raíz para el arranque
     AppComponent
