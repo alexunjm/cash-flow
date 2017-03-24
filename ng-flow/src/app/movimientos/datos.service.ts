@@ -1,3 +1,4 @@
+import { Total } from './modelos/total';
 // Operador de transformación
 
 import 'rxjs/add/operator/map';
@@ -86,6 +87,12 @@ export class DatosService {
   getMovimientoBy_Id$(_id): Observable<Movimiento> {
     return this.http
       .get(`priv/movimientos/${_id}`)
+      .map(r => r.json());
+  }
+
+  getTotal$(): Observable<Total> {
+    return this.http
+      .get('priv/movimientos/total')
       .map(r => r.json());
   }
 }

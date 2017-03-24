@@ -24,7 +24,6 @@
             <!--ruta paramética-->
             <td> <a [routerLink]="['/movimientos', movimiento._id]">{{ movimiento._id }}</a> </td>
             <td>{{ movimiento.fecha | date }}</td>
-            <td>{{ movimiento.fecha | date }}</td>
             <td>{{ movimiento.tipo }}</td>
             <td>{{ movimiento.categoria }}</td>
             <td [ngClass]="{ingreso: movimiento.tipo==1, gasto: movimiento.tipo==2}">{{ movimiento.importe | number}}</td>
