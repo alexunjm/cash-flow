@@ -8,15 +8,15 @@
     <div class="row">
       <label for="fecha"
              class="column"
-             [ngClass]="{'text-error': isNotValid('fecha') }">Fecha: </label>
+             [ngClass]="{'text-error': noEsValido('fecha') }">Fecha: </label>
       <input name="fecha"
              type="date"
              name="fecha"
              class="column"
-             [ngClass]="{'input-error': isNotValid('fecha') }"
+             [ngClass]="{'input-error': noEsValido('fecha') }"
              formControlName="fecha">
     </div>
-    <div *ngIf="hasErrors('fecha')">
+    <div *ngIf="tieneErrores('fecha')">
       <p *ngIf="nuevoForm.get('fecha').errors.required"
          class="float-right text-error">El campo es obligatorio</p>
       <p *ngIf="nuevoForm.get('fecha').errors.betweenTwoDates"
@@ -25,14 +25,14 @@
     <div class="row">
       <label for="importe"
              class="column"
-             [ngClass]="{'text-error': isNotValid('importe') }">Importe: </label>
+             [ngClass]="{'text-error': noEsValido('importe') }">Importe: </label>
       <input name="importe"
              type="number"
              class="column"
-             [ngClass]="{'input-error': isNotValid('importe') }"
+             [ngClass]="{'input-error': noEsValido('importe') }"
              formControlName="importe">
     </div>
-    <div *ngIf="hasErrors('importe')">
+    <div *ngIf="tieneErrores('importe')">
       <p *ngIf="nuevoForm.get('importe').errors.required"
          class="float-right text-error">El campo es obligatorio</p>
       <p *ngIf="nuevoForm.get('importe').errors.positive"
@@ -54,10 +54,10 @@
     <div class="row">
       <label for="categoria"
              class="column"
-             [ngClass]="{'text-error': isNotValid('categoria') }">Categoría: </label>
+             [ngClass]="{'text-error': noEsValido('categoria') }">Categoría: </label>
       <select name="categoria"
               class="column"
-              [ngClass]="{'input-error': isNotValid('categoria') }"
+              [ngClass]="{'input-error': noEsValido('categoria') }"
               formControlName="categoria">
           <option value="" selected>Selecciona una categoría...</option>
             <option *ngFor="let categoria of categorias" [value]="categoria.id">
@@ -65,7 +65,7 @@
             </option>
       </select>
     </div>
-    <div *ngIf="hasErrors('categoria')">
+    <div *ngIf="tieneErrores('categoria')">
       <p *ngIf="nuevoForm.get('categoria').errors.required"
          class="float-right text-error">El campo es obligatorio</p>
     </div>

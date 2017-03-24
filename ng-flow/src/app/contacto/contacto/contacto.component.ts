@@ -29,11 +29,11 @@ export class ContactoComponent implements OnInit {
     this.datosService.saveContacto$(value);
   }
 
-  hasErrors(field) {
+  tieneErrores(field) {
     return (this.hasChanges(field) && this.getfield(field).errors);
   }
 
-  isNotValid(field) {
+  noEsValido(field) {
     return (this.hasChanges(field) && !this.getfield(field).valid);
   }
 

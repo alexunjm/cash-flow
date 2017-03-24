@@ -12,7 +12,7 @@
             id="emailField"
             [ngClass]="{'input-error': isNotValid('email') }"
             formControlName="email">
-          <div *ngIf="hasErrors('email')">
+          <div *ngIf="noEsValido('email')">
             <p *ngIf="contactoForm.get('email').errors.required"
               class="float-right text-error">El campo es obligatorio</p>
           </div>
@@ -25,7 +25,7 @@
             id="subjectField"
             [ngClass]="{'input-error': isNotValid('subject') }"
             formControlName="subject">
-          <div *ngIf="hasErrors('subject')">
+          <div *ngIf="noEsValido('subject')">
             <p *ngIf="contactoForm.get('subject').errors.required"
               class="float-right text-error">El campo es obligatorio</p>
           </div>
@@ -39,7 +39,7 @@
             [ngClass]="{'input-error': isNotValid('description') }"
             formControlName="description">
             </textarea>
-          <div *ngIf="hasErrors('description')">
+          <div *ngIf="noEsValido('description')">
             <p *ngIf="contactoForm.get('description').errors.required"
               class="float-right text-error">El campo es obligatorio</p>
           </div>

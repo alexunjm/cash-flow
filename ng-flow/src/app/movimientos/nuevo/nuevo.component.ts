@@ -68,11 +68,11 @@ export class NuevoComponent implements OnInit {
       .subscribe(r => console.log('Movimiento guardado'));
   }
 
-  hasErrors(field) {
+  tieneErrores(field) {
     return (this.hasChanges(field) && this.getfield(field).errors);
   }
 
-  isNotValid(field) {
+  noEsValido(field) {
     return (this.hasChanges(field) && !this.getfield(field).valid);
   }
 
