@@ -4,9 +4,14 @@
 
 	function maestrosService($resource, environment) {
 
-		this.categorias = $resource(environment.apiUrl + "/api/pub/maestros/categorias");
-		this.tipos = $resource(environment.apiUrl + "/api/pub/maestros/tipos");
-
+		this.maestros = $resource(
+			environment.apiUrl + "/api/pub/maestros/:nombre",
+			{},
+			{
+				'categorias': { method: 'GET', isArray: true, params: { nombre: 'categorias' } },
+				'tipos': { method: 'GET', isArray: true, params: { nombre: 'tipos' } },
+			}
+		);
 	}
 
 }());

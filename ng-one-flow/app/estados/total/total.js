@@ -14,8 +14,8 @@
 			controller: ctrl
 		});
 
-	function ctrl(movimientosService) {
+	function ctrl(apiService) {
 		var vm = this;
-		vm.total = movimientosService.movimientos.total();
+		vm.total = apiService.movimientos.total();
 	}
 }());
