@@ -44,12 +44,12 @@ export class CrudService {
   /** Create */
   post(item: any): Observable<any> {
       return this.http
-          .post(this.apiEndPoint, JSON.stringify(item));
+          .post(this.apiEndPoint, item);
   };
   /** Update */
   put(id: string, item: any): Observable<any> {
       return this.http
-          .post(this.apiEndPoint + '/' + id, JSON.stringify(item));
+          .post(this.apiEndPoint + '/' + id, item);
   };
 
   /** Delete */

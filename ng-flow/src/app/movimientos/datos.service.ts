@@ -66,7 +66,7 @@ export class DatosService {
   postMovimiento$(movimiento: Movimiento) {
     const movimientoClone: Movimiento = Object.assign({}, movimiento);
     movimientoClone._id = Date.now().toString();
-    const body = JSON.stringify(movimientoClone);
+    const body = movimientoClone;
     if (movimiento._id && movimiento._id !== '_') {
       return this.http
         .put(`priv/movimientos/${movimiento._id}`, body);
@@ -99,7 +99,7 @@ export class DatosService {
 
   saveContacto$(contacto: Contacto): Observable<Contacto> {
     return this.http
-      .post('priv/contactos/', JSON.stringify(contacto))
+      .post('priv/contactos/', contacto)
       .map(r => r.json());
   }
 
