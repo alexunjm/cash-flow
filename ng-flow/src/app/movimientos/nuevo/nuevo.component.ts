@@ -1,3 +1,4 @@
+import { FormUtils } from './../../shared/form-utils';
 import { positiveNumberValidator, betweenTwoDatesValidator } from '../../shared/custom-validators';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Categoria } from './../modelos/categoria';
@@ -13,6 +14,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from
 })
 export class NuevoComponent implements OnInit {
   private nuevoForm: FormGroup;
+  private formUtils: FormUtils;
   tipos: Tipo[] = [];
   categorias: Categoria[] = [];
   movimiento: Movimiento;
@@ -23,6 +25,7 @@ export class NuevoComponent implements OnInit {
     this.movimiento = this.datosService.getNuevoMovimiento();
     this.getTiposMovimiento();
     this.buildForm();
+    this.formUtils = new FormUtils(this.nuevoForm);
     this.onChangeTipo();
   }
 

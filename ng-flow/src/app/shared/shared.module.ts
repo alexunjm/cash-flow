@@ -1,3 +1,4 @@
+import { FormUtils } from './form-utils';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Http } from '@angular/http';
@@ -15,7 +16,7 @@ import { UserStoreService } from './user-store.service';
   imports: [// Módulos necesarios
     CommonModule,
     FormsModule,
-    HttpModule
+    HttpModule,
   ],
   providers: [
     {
