@@ -7,20 +7,24 @@ export class FormUtils {
     this.form = form;
   }
 
-  tieneErrores(field) {
-    return (this.hasChanges(field) && this.getfield(field).errors);
+  tieneErrores(campo) {
+    return (this.tieneCambios(campo) && this.getCampo(campo).errors);
   }
 
-  noEsValido(field) {
-    return (this.hasChanges(field) && !this.getfield(field).valid);
+  noEsValido(campo) {
+    return (this.tieneCambios(campo) && !this.getCampo(campo).valid);
   }
 
-  hasChanges(field) {
-    return (this.getfield(field).touched || this.getfield(field).dirty);
+  tieneCambios(campo) {
+    return (this.getCampo(campo).touched || this.getCampo(campo).dirty);
   }
 
-  getfield(field) {
-    return this.form.get(field);
+  campoTieneError(campo, error) {
+    return this.getCampo(campo).errors[error];
+  }
+
+  getCampo(campo) {
+    return this.form.get(campo);
   }
 
 }

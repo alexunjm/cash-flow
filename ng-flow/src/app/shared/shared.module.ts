@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { HttpService } from './http.service';
 import { NgModule } from '@angular/core';
 import { UserStoreService } from './user-store.service';
+import { ValidatorComponent } from './validator/validator.component';
 /**
  * El módulo compartido se importa en todos los demás módulos
  * Con dos propósitos:
@@ -27,7 +28,9 @@ import { UserStoreService } from './user-store.service';
   ],
   exports: [// Lo que aquí se exporte se importará en los módulos funcionales
     CommonModule,
-    FormsModule
-  ]
+    FormsModule,
+    ValidatorComponent
+  ],
+  declarations: [ValidatorComponent]
 })
 export class SharedModule { }

@@ -12,10 +12,12 @@
             id="emailField"
             [ngClass]="{'input-error': formUtils.noEsValido('email') }"
             formControlName="email">
-          <div *ngIf="formUtils.tieneErrores('email')">
-            <p *ngIf="contactoForm.get('email').errors.required"
-              class="float-right text-error">El campo es obligatorio</p>
-          </div>
+          <cf-validator
+            [form]="contactoForm"
+            campo="email"
+            error="required"
+            mensaje="El campo es obligatorio">
+          </cf-validator>
           <label for="subjectField"
             [ngClass]="{ 'text-error': formUtils.noEsValido('subject') }">
             Asunto
@@ -25,10 +27,12 @@
             id="subjectField"
             [ngClass]="{'input-error': formUtils.noEsValido('subject') }"
             formControlName="subject">
-          <div *ngIf="formUtils.tieneErrores('subject')">
-            <p *ngIf="contactoForm.get('subject').errors.required"
-              class="float-right text-error">El campo es obligatorio</p>
-          </div>
+          <cf-validator
+            [form]="contactoForm"
+            campo="subject"
+            error="required"
+            mensaje="El campo es obligatorio">
+          </cf-validator>
           <label for="descriptionField"
             [ngClass]="{ 'text-error': formUtils.noEsValido('description') }">
             Descripción
@@ -39,10 +43,12 @@
             [ngClass]="{'input-error': formUtils.noEsValido('description') }"
             formControlName="description">
             </textarea>
-          <div *ngIf="formUtils.tieneErrores('description')">
-            <p *ngIf="contactoForm.get('description').errors.required"
-              class="float-right text-error">El campo es obligatorio</p>
-          </div>
+          <cf-validator
+            [form]="contactoForm"
+            campo="description"
+            error="required"
+            mensaje="El campo es obligatorio">
+          </cf-validator>
           <input class="button-primary" type="submit" value="Enviar" [disabled]="!contactoForm.valid">
         </fieldset>
       </form>

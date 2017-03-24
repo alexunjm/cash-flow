@@ -16,12 +16,12 @@
              [ngClass]="{'input-error': formUtils.noEsValido('fecha') }"
              formControlName="fecha">
     </div>
-    <div *ngIf="formUtils.tieneErrores('fecha')">
-      <p *ngIf="nuevoForm.get('fecha').errors.required"
-         class="float-right text-error">El campo es obligatorio</p>
-      <p *ngIf="nuevoForm.get('fecha').errors.betweenTwoDates"
-         class="float-right text-error">La fecha debe de estar comprendida entre hoy y +- 5días</p>
-    </div>
+    <cf-validator
+      [form]="nuevoForm"
+      campo="fecha"
+      error="betweenTwoDates"
+      mensaje="La fecha debe de estar comprendida entre hoy y +- 5días">
+    </cf-validator>
     <div class="row">
       <label for="importe"
              class="column"
@@ -32,12 +32,18 @@
              [ngClass]="{'input-error': formUtils.noEsValido('importe') }"
              formControlName="importe">
     </div>
-    <div *ngIf="formUtils.tieneErrores('importe')">
-      <p *ngIf="nuevoForm.get('importe').errors.required"
-         class="float-right text-error">El campo es obligatorio</p>
-      <p *ngIf="nuevoForm.get('importe').errors.positive"
-         class="float-right text-error">El importe debe ser positivo</p>
-    </div>
+    <cf-validator
+      [form]="nuevoForm"
+      campo="importe"
+      error="required"
+      mensaje="El campo es obligatorio">
+    </cf-validator>
+    <cf-validator
+      [form]="nuevoForm"
+      campo="importe"
+      error="positive"
+      mensaje="El importe debe ser positivo">
+    </cf-validator>
     <div class="row">
       <label for="tipo"
              class="column">Tipo: </label>
@@ -65,10 +71,12 @@
             </option>
       </select>
     </div>
-    <div *ngIf="formUtils.tieneErrores('categoria')">
-      <p *ngIf="nuevoForm.get('categoria').errors.required"
-         class="float-right text-error">El campo es obligatorio</p>
-    </div>
+    <cf-validator
+      [form]="nuevoForm"
+      campo="categoria"
+      error="required"
+      mensaje="El campo es obligatorio">
+    </cf-validator>
     <div class="row">
       <button type="submit"
         [disabled]="!nuevoForm.valid">Crear movimiento</button>
