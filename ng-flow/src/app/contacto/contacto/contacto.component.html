@@ -1,35 +1,45 @@
 <div class="container">
   <div class="row">
     <div class="column">
-      <form [formGroup]="contactoForm" (ngSubmit)="onSubmit(contactoForm)" novalidate>
+      <form [formGroup]="contactoForm" (ngSubmit)="onSubmit(contactoForm)"  novalidate>
         <fieldset>
           <label for="emailField"
-            [ngClass]="{ 'text-error': (contactoForm.get('email').touched || contactoForm.get('email').dirty) && !contactoForm.get('email').valid }">
+            [ngClass]="{ 'text-error': isNotValid('email') }">
             Email
           </label>
           <input type="text"
             placeholder="Email"
             id="emailField"
+            [ngClass]="{'input-error': isNotValid('email') }"
             formControlName="email">
-          <div *ngIf="(contactoForm.get('email').touched || contactoForm.get('email').dirty) && contactoForm.get('email').errors">
+          <div *ngIf="hasErrors('email')">
             <p *ngIf="contactoForm.get('email').errors.required"
               class="float-right text-error">El campo es obligatorio</p>
           </div>
           <label for="subjectField"
-            [ngClass]="{ 'text-error': (contactoForm.get('subject').touched || contactoForm.get('subject').dirty) && !contactoForm.get('subject').valid }">
+            [ngClass]="{ 'text-error': isNotValid('subject') }">
             Asunto
             </label>
-          <input type="text" placeholder="Asunto" id="subjectField" formControlName="subject">
-          <div *ngIf="(contactoForm.get('subject').touched || contactoForm.get('subject').dirty) && contactoForm.get('subject').errors">
+          <input type="text"
+            placeholder="Asunto"
+            id="subjectField"
+            [ngClass]="{'input-error': isNotValid('subject') }"
+            formControlName="subject">
+          <div *ngIf="hasErrors('subject')">
             <p *ngIf="contactoForm.get('subject').errors.required"
               class="float-right text-error">El campo es obligatorio</p>
           </div>
           <label for="descriptionField"
-            [ngClass]="{ 'text-error': (contactoForm.get('description').touched || contactoForm.get('description').dirty) && !contactoForm.get('description').valid }">
+            [ngClass]="{ 'text-error': isNotValid('description') }">
             Descripción
           </label>
-          <textarea placeholder="Descripción" id="descriptionField" formControlName="description"></textarea>
-          <div *ngIf="(contactoForm.get('description').touched || contactoForm.get('description').dirty) && contactoForm.get('description').errors">
+          <textarea placeholder="Descripción" 
+            id="descriptionField"
+            formControlName="description"
+            [ngClass]="{'input-error': isNotValid('description') }"
+            formControlName="description">
+            </textarea>
+          <div *ngIf="hasErrors('description')">
             <p *ngIf="contactoForm.get('description').errors.required"
               class="float-right text-error">El campo es obligatorio</p>
           </div>

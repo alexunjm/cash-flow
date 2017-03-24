@@ -29,4 +29,20 @@ export class ContactoComponent implements OnInit {
     this.datosService.saveContacto$(value);
   }
 
+  hasErrors(field) {
+    return (this.hasChanges(field) && this.getfield(field).errors);
+  }
+
+  isNotValid(field) {
+    return (this.hasChanges(field) && !this.getfield(field).valid);
+  }
+
+  hasChanges(field) {
+    return (this.getfield(field).touched || this.getfield(field).dirty);
+  }
+
+  getfield(field) {
+    return this.contactoForm.get(field);
+  }
+
 }

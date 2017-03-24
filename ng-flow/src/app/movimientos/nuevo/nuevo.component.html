@@ -8,16 +8,15 @@
     <div class="row">
       <label for="fecha"
              class="column"
-             [ngClass]="{ 'text-error': (nuevoForm.get('fecha').touched || nuevoForm.get('fecha').dirty) && !nuevoForm.get('fecha').valid }">Fecha: </label>
+             [ngClass]="{'text-error': isNotValid('fecha') }">Fecha: </label>
       <input name="fecha"
              type="date"
              name="fecha"
              class="column"
-             [ngClass]="{ 'input-error': (nuevoForm.get('fecha').touched || nuevoForm.get('fecha').dirty) && !nuevoForm.get('fecha').valid }"
-    
+             [ngClass]="{'input-error': isNotValid('fecha') }"
              formControlName="fecha">
     </div>
-    <div *ngIf="(nuevoForm.get('fecha').touched || nuevoForm.get('fecha').dirty) && nuevoForm.get('fecha').errors">
+    <div *ngIf="hasErrors('fecha')">
       <p *ngIf="nuevoForm.get('fecha').errors.required"
          class="float-right text-error">El campo es obligatorio</p>
       <p *ngIf="nuevoForm.get('fecha').errors.betweenTwoDates"
@@ -26,15 +25,14 @@
     <div class="row">
       <label for="importe"
              class="column"
-             [ngClass]="{ 'text-error': (nuevoForm.get('importe').touched || nuevoForm.get('importe').dirty) && !nuevoForm.get('importe').valid }">Importe: </label>
+             [ngClass]="{'text-error': isNotValid('importe') }">Importe: </label>
       <input name="importe"
              type="number"
              class="column"
-             [ngClass]="{ 'input-error': (nuevoForm.get('importe').touched || nuevoForm.get('importe').dirty) && !nuevoForm.get('importe').valid }"
-    
+             [ngClass]="{'input-error': isNotValid('importe') }"
              formControlName="importe">
     </div>
-    <div *ngIf="(nuevoForm.get('importe').touched || nuevoForm.get('importe').dirty) && nuevoForm.get('importe').errors">
+    <div *ngIf="hasErrors('importe')">
       <p *ngIf="nuevoForm.get('importe').errors.required"
          class="float-right text-error">El campo es obligatorio</p>
       <p *ngIf="nuevoForm.get('importe').errors.positive"
@@ -56,11 +54,10 @@
     <div class="row">
       <label for="categoria"
              class="column"
-             [ngClass]="{ 'text-error': (nuevoForm.get('categoria').touched || nuevoForm.get('categoria').dirty) && !nuevoForm.get('categoria').valid }">Categoría: </label>
+             [ngClass]="{'text-error': isNotValid('categoria') }">Categoría: </label>
       <select name="categoria"
               class="column"
-              [ngClass]="{ 'input-error': (nuevoForm.get('categoria').touched || nuevoForm.get('categoria').dirty) && !nuevoForm.get('categoria').valid }"
-    
+              [ngClass]="{'input-error': isNotValid('categoria') }"
               formControlName="categoria">
           <option value="" selected>Selecciona una categoría...</option>
             <option *ngFor="let categoria of categorias" [value]="categoria.id">
@@ -68,7 +65,7 @@
             </option>
       </select>
     </div>
-    <div *ngIf="(nuevoForm.get('categoria').touched || nuevoForm.get('categoria').dirty) && nuevoForm.get('categoria').errors">
+    <div *ngIf="hasErrors('categoria')">
       <p *ngIf="nuevoForm.get('categoria').errors.required"
          class="float-right text-error">El campo es obligatorio</p>
     </div>
