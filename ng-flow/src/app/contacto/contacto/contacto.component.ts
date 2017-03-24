@@ -1,3 +1,5 @@
+import { DatosService } from './../../movimientos/datos.service';
+import { HttpService } from './../../shared/http.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class ContactoComponent implements OnInit {
   private contactoForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private datosService: DatosService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -22,5 +24,9 @@ export class ContactoComponent implements OnInit {
       description: [[], Validators.required]
     });
   };
+
+  onSubmit({value, valid}) {
+    this.datosService.saveContacto$(value);
+  }
 
 }

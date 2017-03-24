@@ -1,3 +1,4 @@
+import { Contacto } from './../contacto/modelos/contacto';
 import { Total } from './modelos/total';
 // Operador de transformación
 
@@ -95,4 +96,11 @@ export class DatosService {
       .get('priv/movimientos/total')
       .map(r => r.json());
   }
+
+  saveContacto$(contacto: Contacto): Observable<Contacto> {
+    return this.http
+      .post('priv/contactos/', JSON.stringify(contacto))
+      .map(r => r.json());
+  }
+
 }

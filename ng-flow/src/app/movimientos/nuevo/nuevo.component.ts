@@ -63,7 +63,6 @@ export class NuevoComponent implements OnInit {
   }
 
   alGuardarMovimiento({value, valid}): void {
-    console.log(value);
     this.datosService
       .postMovimiento$(value)
       .subscribe(r => console.log('Movimiento guardado'));

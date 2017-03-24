@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="column">
-      <form [formGroup]="contactoForm" novalidate>
+      <form [formGroup]="contactoForm" (ngSubmit)="onSubmit(contactoForm)" novalidate>
         <fieldset>
           <label for="emailField"
             [ngClass]="{ 'text-error': (contactoForm.get('email').touched || contactoForm.get('email').dirty) && !contactoForm.get('email').valid }">
