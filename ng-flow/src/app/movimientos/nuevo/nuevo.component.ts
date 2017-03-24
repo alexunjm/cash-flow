@@ -47,7 +47,7 @@ export class NuevoComponent implements OnInit {
       fecha: [this.movimiento.fecha.toISOString().substring(0, 10), [Validators.required, betweenTwoDatesValidator(pastDate, futureDate)]],
       importe: [this.movimiento.importe, [Validators.required, positiveNumberValidator]],
       tipo: 1,
-      categoria: ['', Validators.required]
+      categoria:  [[], [Validators.required]]
     });
   }
 
@@ -56,15 +56,16 @@ export class NuevoComponent implements OnInit {
       this.datosService.getCategorias$().subscribe(categorias => {
         this.categorias = this.datosService.getCategoriasPorTipo(tipo);
         this.nuevoForm.patchValue({
-          categoria: ''
+          categoria: []
         });
       });
     });
   }
 
-  alGuardarMovimiento(): void {
+  alGuardarMovimiento({value, valid}): void {
+    console.log(value);
     this.datosService
-      .postMovimiento$(this.movimiento)
+      .postMovimiento$(value)
       .subscribe(r => console.log('Movimiento guardado'));
   }
 

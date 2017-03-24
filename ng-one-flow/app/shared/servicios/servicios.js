@@ -21,6 +21,24 @@
 				'total': { method: 'GET', params: { id: 'total' } }
 			}
 		);
+
+
+		this.usuarios = $resource(
+			environment.apiUrl + "/api/pub/:nombre",
+			{},
+			{
+				'registrar': {
+					method: 'POST', params: { nombre: 'usuarios' }, transformResponse: string2object
+				},
+				'entrar': {
+					method: 'POST', params: { nombre: 'sesiones' }, transformResponse: string2object
+				},
+			}
+		);
+	}
+
+	function string2object(value) {
+		return { token: angular.fromJson(value) };
 	}
 
 }());

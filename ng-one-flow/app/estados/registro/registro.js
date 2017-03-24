@@ -14,30 +14,32 @@
 			controller: ctrl
 		});
 
-	function ctrl($state, $http, $rootScope, environment) {
+	function ctrl($state, apiService, $rootScope, environment) {
 		var urlBase = environment.apiUrl + "/api/pub/";
 		var vm = this;
 		vm.usuario = {};
 		vm.registrar = function () {
-			$http.post(urlBase + 'usuarios/', vm.usuario)
-				.then(function (respuesta) {
+			apiService.usuarios.registrar().$promise
+				.then(token => {
+					console.table(token);
 					$rootScope.usuario = vm.usuario.email;
 					$rootScope.mensaje = 'recién creado';
-					localStorage.setItem("sessionId", respuesta.data);
+					localStorage.setItem("sessionId", token);
 					$state.go("total");
-				}, function (respuesta) {
-					$rootScope.mensaje = respuesta.data;
+				}, fallo => {
+					$rootScope.mensaje = fallo.data;
 				});
 		}
 		vm.entrar = function () {
-			$http.post(urlBase + 'sesiones/', vm.usuario)
-				.then(function (respuesta) {
+			apiService.usuarios.entrar().$promise
+				.then(data => {
+					console.table(data);
 					$rootScope.usuario = vm.usuario.email;
 					$rootScope.mensaje = 'recién entrado';
-					localStorage.setItem("sessionId", respuesta.data);
+					localStorage.setItem("sessionId", data.token);
 					$state.go("total");
-				}, function (respuesta) {
-					$rootScope.mensaje = respuesta.data;
+				}, fallo => {
+					$rootScope.mensaje = fallo.data;
 				});
 		}
 	}
