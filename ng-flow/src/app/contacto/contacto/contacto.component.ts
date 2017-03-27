@@ -29,7 +29,7 @@ export class ContactoComponent implements OnInit {
   };
 
   onSubmit({value, valid}) {
-    this.datosService.saveContacto$(value);
+    this.datosService.saveMensaje$(value).subscribe();
   }
 
 }

@@ -1,4 +1,4 @@
-export class Contacto {
+export class Mensaje {
 
   constructor(private email: string,
     private subject: string,

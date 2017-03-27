@@ -23,6 +23,7 @@ module.exports = (app, rutamensajes) => {
       nuevoMovimiento.usuario = req.usuario;
       mensajes.push(nuevoMovimiento)
       res.status(201).json(nuevoMovimiento);
+      console.log('ok guardando mensaje');
     })
     .delete((req, res) => {
       mensajes = [];

@@ -1,4 +1,4 @@
-import { Contacto } from './../contacto/modelos/contacto';
+import { Mensaje } from './../contacto/modelos/mensaje';
 import { Total } from './modelos/total';
 // Operador de transformación
 
@@ -97,9 +97,9 @@ export class DatosService {
       .map(r => r.json());
   }
 
-  saveContacto$(contacto: Contacto): Observable<Contacto> {
+  saveMensaje$(mensaje: Mensaje): Observable<Mensaje> {
     return this.http
-      .post('priv/contactos/', contacto)
+      .post('priv/mensajes', mensaje)
       .map(r => r.json());
   }
 
