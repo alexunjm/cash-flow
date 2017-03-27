@@ -29,7 +29,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'movimientos/:id', // parámetro variable id
+    path: ':id', // parámetro variable id
     component: EditorComponent // se verá dentro del router-oulet principal
   }
 ];

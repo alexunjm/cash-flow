@@ -1,10 +1,12 @@
-import { positiveNumberValidator, betweenTwoDatesValidator } from '../../shared/custom-validators';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { betweenTwoDatesValidator, positiveNumberValidator } from '../../shared/custom-validators';
+
 import { Categoria } from './../modelos/categoria';
 import { DatosService } from './../datos.service';
+import { FormUtils } from './../../shared/form-utils';
 import { Movimiento } from './../modelos/movimiento';
 import { Tipo } from './../modelos/tipo';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'cf-nuevo',
@@ -13,6 +15,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from
 })
 export class NuevoComponent implements OnInit {
   private nuevoForm: FormGroup;
+  private formUtils: FormUtils;
   tipos: Tipo[] = [];
   categorias: Categoria[] = [];
   movimiento: Movimiento;
@@ -20,13 +23,14 @@ export class NuevoComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private datosService: DatosService) { }
 
   ngOnInit() {
+    this.cargarMaestros();
     this.movimiento = this.datosService.getNuevoMovimiento();
-    this.getTiposMovimiento();
     this.buildForm();
-    this.onChangeTipo();
+    this.formUtils = new FormUtils(this.nuevoForm);
+    this.controlarCambioTipo();
   }
 
-  getTiposMovimiento() {
+  cargarMaestros() {
     this.datosService.getTiposMovimiento$().subscribe(tipos => {
       this.tipos = tipos;
       this.datosService.getCategorias$().subscribe(categorias => {
@@ -46,26 +50,28 @@ export class NuevoComponent implements OnInit {
     this.nuevoForm = this.formBuilder.group({
       fecha: [this.movimiento.fecha.toISOString().substring(0, 10), [Validators.required, betweenTwoDatesValidator(pastDate, futureDate)]],
       importe: [this.movimiento.importe, [Validators.required, positiveNumberValidator]],
-      tipo: 1,
-      categoria: ['', Validators.required]
+      tipo: this.movimiento.tipo,
+      categoria: [this.movimiento.categoria, [Validators.required]]
     });
   }
 
-  onChangeTipo() {
+  controlarCambioTipo() {
     this.nuevoForm.get('tipo').valueChanges.subscribe((tipo) => {
-      this.datosService.getCategorias$().subscribe(categorias => {
-        this.categorias = this.datosService.getCategoriasPorTipo(tipo);
-        this.nuevoForm.patchValue({
-          categoria: ''
-        });
-      });
+      this.recargarCategorias(tipo);
     });
   }
 
-  alGuardarMovimiento(): void {
+  recargarCategorias(tipo) {
+    this.categorias = this.datosService.getCategoriasPorTipo(tipo);
+    this.nuevoForm.patchValue({
+      categoria: []
+    });
+  }
+
+
+  alGuardarMovimiento({ value, valid }): void {
     this.datosService
-      .postMovimiento$(this.movimiento)
+      .postMovimiento$(value)
       .subscribe(r => console.log('Movimiento guardado'));
   }
-
 }

@@ -1,3 +1,4 @@
+import { DatosService } from './../movimientos/datos.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
@@ -11,6 +12,7 @@ import { ContactoRoutingModule } from './contacto-routing.module';
     ReactiveFormsModule,
     ContactoRoutingModule
   ],
-  declarations: [ContactoComponent]
+  declarations: [ContactoComponent],
+  providers: [DatosService]
 })
 export class ContactoModule { }

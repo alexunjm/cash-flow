@@ -1,3 +1,6 @@
+import { FormUtils } from './../../shared/form-utils';
+import { DatosService } from './../../movimientos/datos.service';
+import { HttpService } from './../../shared/http.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,12 +10,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contacto.component.css']
 })
 export class ContactoComponent implements OnInit {
+  private formUtils: FormUtils;
   private contactoForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private datosService: DatosService) { }
 
   ngOnInit() {
     this.buildForm();
+    this.formUtils = new FormUtils(this.contactoForm);
   }
 
   buildForm() {
@@ -22,5 +27,9 @@ export class ContactoComponent implements OnInit {
       description: [[], Validators.required]
     });
   };
+
+  onSubmit({value, valid}) {
+    this.datosService.saveMensaje$(value).subscribe();
+  }
 
 }

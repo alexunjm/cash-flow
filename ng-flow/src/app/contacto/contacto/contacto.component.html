@@ -1,38 +1,54 @@
 <div class="container">
   <div class="row">
     <div class="column">
-      <form [formGroup]="contactoForm" novalidate>
+      <form [formGroup]="contactoForm" (ngSubmit)="onSubmit(contactoForm)"  novalidate>
         <fieldset>
           <label for="emailField"
-            [ngClass]="{ 'text-error': (contactoForm.get('email').touched || contactoForm.get('email').dirty) && !contactoForm.get('email').valid }">
+            [ngClass]="{ 'text-error': formUtils.noEsValido('email') }">
             Email
           </label>
           <input type="text"
             placeholder="Email"
             id="emailField"
+            [ngClass]="{'input-error': formUtils.noEsValido('email') }"
             formControlName="email">
-          <div *ngIf="(contactoForm.get('email').touched || contactoForm.get('email').dirty) && contactoForm.get('email').errors">
-            <p *ngIf="contactoForm.get('email').errors.required"
-              class="float-right text-error">El campo es obligatorio</p>
-          </div>
+          <cf-validator
+            [form]="contactoForm"
+            campo="email"
+            error="required"
+            mensaje="El campo es obligatorio">
+          </cf-validator>
           <label for="subjectField"
-            [ngClass]="{ 'text-error': (contactoForm.get('subject').touched || contactoForm.get('subject').dirty) && !contactoForm.get('subject').valid }">
+            [ngClass]="{ 'text-error': formUtils.noEsValido('subject') }">
             Asunto
             </label>
-          <input type="text" placeholder="Asunto" id="subjectField" formControlName="subject">
-          <div *ngIf="(contactoForm.get('subject').touched || contactoForm.get('subject').dirty) && contactoForm.get('subject').errors">
-            <p *ngIf="contactoForm.get('subject').errors.required"
-              class="float-right text-error">El campo es obligatorio</p>
-          </div>
+          <input type="text"
+            placeholder="Asunto"
+            id="subjectField"
+            [ngClass]="{'input-error': formUtils.noEsValido('subject') }"
+            formControlName="subject">
+          <cf-validator
+            [form]="contactoForm"
+            campo="subject"
+            error="required"
+            mensaje="El campo es obligatorio">
+          </cf-validator>
           <label for="descriptionField"
-            [ngClass]="{ 'text-error': (contactoForm.get('description').touched || contactoForm.get('description').dirty) && !contactoForm.get('description').valid }">
+            [ngClass]="{ 'text-error': formUtils.noEsValido('description') }">
             Descripción
           </label>
-          <textarea placeholder="Descripción" id="descriptionField" formControlName="description"></textarea>
-          <div *ngIf="(contactoForm.get('description').touched || contactoForm.get('description').dirty) && contactoForm.get('description').errors">
-            <p *ngIf="contactoForm.get('description').errors.required"
-              class="float-right text-error">El campo es obligatorio</p>
-          </div>
+          <textarea placeholder="Descripción" 
+            id="descriptionField"
+            formControlName="description"
+            [ngClass]="{'input-error': formUtils.noEsValido('description') }"
+            formControlName="description">
+            </textarea>
+          <cf-validator
+            [form]="contactoForm"
+            campo="description"
+            error="required"
+            mensaje="El campo es obligatorio">
+          </cf-validator>
           <input class="button-primary" type="submit" value="Enviar" [disabled]="!contactoForm.valid">
         </fieldset>
       </form>

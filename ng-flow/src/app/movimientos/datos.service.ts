@@ -1,3 +1,5 @@
+import { Mensaje } from './../contacto/modelos/mensaje';
+import { Total } from './modelos/total';
 // Operador de transformación
 
 import 'rxjs/add/operator/map';
@@ -64,7 +66,7 @@ export class DatosService {
   postMovimiento$(movimiento: Movimiento) {
     const movimientoClone: Movimiento = Object.assign({}, movimiento);
     movimientoClone._id = Date.now().toString();
-    const body = JSON.stringify(movimientoClone);
+    const body = movimientoClone;
     if (movimiento._id && movimiento._id !== '_') {
       return this.http
         .put(`priv/movimientos/${movimiento._id}`, body);
@@ -88,4 +90,17 @@ export class DatosService {
       .get(`priv/movimientos/${_id}`)
       .map(r => r.json());
   }
+
+  getTotal$(): Observable<Total> {
+    return this.http
+      .get('priv/movimientos/total')
+      .map(r => r.json());
+  }
+
+  saveMensaje$(mensaje: Mensaje): Observable<Mensaje> {
+    return this.http
+      .post('priv/mensajes', mensaje)
+      .map(r => r.json());
+  }
+
 }

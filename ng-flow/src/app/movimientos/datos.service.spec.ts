@@ -57,7 +57,7 @@ describe('DatosService', () => {
   it('should get all the tipos', () => {
      mockBackend.connections.subscribe(connection => {
       connection.mockRespond(new Response(new ResponseOptions({
-        body: JSON.stringify(fakeTipos)
+        body: fakeTipos
       })));
     });
 
@@ -71,7 +71,7 @@ describe('DatosService', () => {
   it('should get all the categorias', () => {
     mockBackend.connections.subscribe(connection => {
       connection.mockRespond(new Response(new ResponseOptions({
-        body: JSON.stringify(fakeCategorias)
+        body: fakeCategorias
       })));
     });
 
@@ -99,7 +99,7 @@ describe('DatosService', () => {
   it('should get all the movimientos', () => {
     mockBackend.connections.subscribe(connection => {
       connection.mockRespond(new Response(new ResponseOptions({
-        body: JSON.stringify(fakeMovimientos)
+        body: fakeMovimientos
       })));
     });
 
@@ -113,7 +113,7 @@ describe('DatosService', () => {
   it('should get one movimiento', () => {
     mockBackend.connections.subscribe(connection => {
       connection.mockRespond(new Response(new ResponseOptions({
-        body: JSON.stringify(fakeMovimiento)
+        body: fakeMovimiento
       })));
     });
 

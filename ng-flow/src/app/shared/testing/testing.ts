@@ -22,7 +22,7 @@ export class Testing {
   getMockResponse(mockBackend, fakeData) {
     mockBackend.connections.subscribe(connection => {
       connection.mockRespond(new Response(new ResponseOptions({
-        body: JSON.stringify(fakeData)
+        body: fakeData
       })));
     });
   }

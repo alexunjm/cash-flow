@@ -36,20 +36,20 @@ describe('cash-flow App', () => {
 
   it('should prompt user to log in on saving a new Movimiento', () => {
     nuevoMovimientoPage.navigateTo();
-    nuevoMovimientoPage.createMovimiento('09/03/2017', '20', 'Gasto', 'Compras');
+    nuevoMovimientoPage.createMovimiento('27/03/2017', '20', 'Gasto', 'Compras');
     expect(browser.getCurrentUrl()).toBe(browser.baseUrl + '/user/login');
   });
 
   it('should register a user correctly and redirect him to the home page', () => {
     nuevoMovimientoPage.navigateTo();
-    nuevoMovimientoPage.createMovimiento('09/03/2017', '20', 'Gasto', 'Compras');
+    nuevoMovimientoPage.createMovimiento('27/03/2017', '20', 'Gasto', 'Compras');
     userLoginPage.register('user', 'password');
     expect(browser.getCurrentUrl()).toBe(browser.baseUrl + '/');
   });
 
   it('should can post a movimiento when logged in and display it on Lista Movimientos', () => {
     nuevoMovimientoPage.navigateTo();
-    nuevoMovimientoPage.createMovimiento('09/03/2017', '20', 'Gasto', 'Compras');
+    nuevoMovimientoPage.createMovimiento('27/03/2017', '20', 'Gasto', 'Compras');
     listaMovimientosPage.navigateTo();
     const listaMovimientos: ElementArrayFinder = listaMovimientosPage.searchListaMovimientos();
     expect(listaMovimientos.count()).toBe(1);
