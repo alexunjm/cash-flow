@@ -28,25 +28,6 @@ module.exports = (app, rutamensajes) => {
       mensajes = [];
       res.status(204).send();
     });
-  /**
-   * Ruta para obtener los totales
-   */
-  app.route(`${rutamensajes}/total`)
-    .get((req, res) => {
-      const total = { ingresos: 0, gastos: 0 };
-      let mensajesUsuario = getmensajesUsuario(req.usuario);
-      if (mensajesUsuario && mensajesUsuario.length > 0) {
-        mensajesUsuario.forEach(m => {
-          if (m.tipo == 1)
-            total.ingresos += m.importe ? m.importe : 0;
-          else
-            total.gastos += m.importe ? m.importe : 0;
-        });
-        res.json(total);
-      }
-      else
-        res.status(204).send();
-    });
   // esto otra ruta va a nivel de un elemento concreto
   // // api/priv/mensajes/159
   app.route(`${rutamensajes}/:id`)
@@ -57,17 +38,6 @@ module.exports = (app, rutamensajes) => {
         res.json(mensajesUsuario[0]);
       else
         res.status(404).send();
-    })
-    .put((req, res) => {
-      // actualización de un movimiento por id
-      let mensajesUsuario = getMovimientoUsuario(req.params.id, req.usuario);
-      if (mensajesUsuario && mensajesUsuario.length > 0) {
-        mensajesUsuario[0] = req.body;
-        res.json(1);
-      } else {
-        res.status(404).send(0);
-      }
-
     })
     .delete((req, res) => {
       // borrado de un movimiento por id

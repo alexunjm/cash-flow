@@ -5,6 +5,7 @@ const sesiones = require('./sesiones.js');
 const maestros = require('./maestros.js');
 const movimientos = require('./movimientos.js');
 const mensajes = require('./mensajes.js');
+const eventos = require('./eventos.js');
 const items = require('./items.js');
 
 /** Función que configura las rutas de una aplicación */
@@ -15,4 +16,5 @@ module.exports = app => {
     movimientos(app, '/api/priv/movimientos');
     mensajes(app, '/api/priv/mensajes');
     items(app, '/api/priv/items');
+    items(app, '/api/priv/eventos');
 }

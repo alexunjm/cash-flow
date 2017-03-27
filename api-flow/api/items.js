@@ -28,25 +28,6 @@ module.exports = (app, rutaitems) => {
       items = [];
       res.status(204).send();
     });
-  /**
-   * Ruta para obtener los totales
-   */
-  app.route(`${rutaitems}/total`)
-    .get((req, res) => {
-      const total = { ingresos: 0, gastos: 0 };
-      let itemsUsuario = getitemsUsuario(req.usuario);
-      if (itemsUsuario && itemsUsuario.length > 0) {
-        itemsUsuario.forEach(m => {
-          if (m.tipo == 1)
-            total.ingresos += m.importe ? m.importe : 0;
-          else
-            total.gastos += m.importe ? m.importe : 0;
-        });
-        res.json(total);
-      }
-      else
-        res.status(204).send();
-    });
   // esto otra ruta va a nivel de un elemento concreto
   // // api/priv/items/159
   app.route(`${rutaitems}/:id`)
