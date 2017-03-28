@@ -17,7 +17,9 @@
 	function ctrl($state, apiService, $rootScope, environment) {
 		var urlBase = environment.apiUrl + "/api/pub/";
 		var vm = this;
-		vm.usuario = new apiService.usuarios();
+		this.$onInit = function () {
+			vm.usuario = new apiService.usuarios();
+		}
 		vm.registrar = function () {
 			vm.usuario.$registrar()
 				.then(data => {

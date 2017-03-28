@@ -16,6 +16,9 @@
 
 	function ctrl(apiService) {
 		var vm = this;
-		vm.total = apiService.movimientos.total();
+		vm.$onInit = function () {
+			vm.total = apiService.movimientos.total();
+		}
+
 	}
 }());
