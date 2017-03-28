@@ -5,18 +5,26 @@ describe('ab-contador', () => {
   beforeEach(angular.mock.module('abContador'));
   // 1:
   beforeEach(inject((_$compile_, _$rootScope_) => {
-    // 2:
     parentScope = _$rootScope_.$new();
-    // 3:
-    element = angular.element(`<ab-contador></ab-contador>`);
+    parentScope.valor = '10';
+    element = angular.element(`<ab-contador valor="valor"></ab-contador>`);
     _$compile_(element)(parentScope);
-    // 4:
     parentScope.$digest();
   }));
-  it('shows the menu', () => {
-    // 5:
+  it('shows the component', () => {
     const menuElement = queryCss(element, '.contador');
     expect(menuElement).toBeDefined();
+  });
+  it('displays initial value ', () => {
+    const valorAttr = queryCss(element, '.label').text().trim();
+    expect(valorAttr).toEqual('10.00 €');
+  });
+  it('displays changed value', () => {
+    parentScope.valor = '9.99';
+    parentScope.$digest();
+    const valorAttr = queryCss(element, '.label').text().trim();
+    expect(valorAttr).toEqual('9.99 €');
+
   });
   function queryCss(element, selector) {
     return angular.element(element[0].querySelector(selector));
