@@ -36,8 +36,8 @@ function usarSeguridad(app, ruta) {
         if (authorization) {
             const pieces = authorization.split(' ');
             if (pieces && pieces.length > 0) {
-                const sessionId = authorization.split(' ')[1];
-                sesion = jwt.verify(sessionId);
+                const token = authorization.split(' ')[1];
+                sesion = jwt.verify(token);
             }
             if (sesion) {
                 req.usuario = sesion.email;

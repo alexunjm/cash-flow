@@ -9,7 +9,8 @@ exports.generaToken = (usuario) => jwt.sign(usuario, secreto, { expiresIn: 20 * 
 /** verifica al usuario a partir del token  */
 exports.verify = (token) => {
     try {
-        return jwt.verify(token, secreto)
+        const isOk = jwt.verify(token, secreto);
+        return isOk;
     }
     catch (err) {
         return false

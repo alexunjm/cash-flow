@@ -15,7 +15,7 @@
 
 		this.movimientos = $resource(
 			environment.apiUrl + "/api/priv/movimientos/:id",
-			{ id: '@id' },
+			{ id: '@_id' },
 			{
 				'update': { method: 'PUT' },
 				'total': { method: 'GET', params: { id: 'total' } }
@@ -38,7 +38,12 @@
 	}
 
 	function string2object(value) {
-		return { token: angular.fromJson(value) };
+		console.group('api/usuarios');
+		console.log(value);
+		const data = { token: angular.fromJson(value) }
+		console.log(data);
+		console.groupEnd();
+		return data;
 	}
 
 }());

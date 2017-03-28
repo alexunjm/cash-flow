@@ -5,7 +5,7 @@
 		.config(function ($stateProvider) {
 			$stateProvider
 				.state(name, {
-					url: '/' + name + ':id',
+					url: '/' + name + '/:id',
 					template: `<ab-${name}></ab-${name}>`
 				})
 		})

@@ -17,20 +17,20 @@
 	function ctrl($state, apiService, $rootScope, environment) {
 		var urlBase = environment.apiUrl + "/api/pub/";
 		var vm = this;
-		vm.usuario = {};
+		vm.usuario = new apiService.usuarios();
 		vm.registrar = function () {
-			apiService.usuarios.registrar().$promise
-				.then(token => {
+			vm.usuario.$registrar()
+				.then(data => {
 					$rootScope.$emit('usuario', vm.usuario.email);
 					$rootScope.$emit('mensaje', 'recién creado');
-					localStorage.setItem("sessionId", token);
+					localStorage.setItem("sessionId", data.token);
 					$state.go("total");
 				}, fallo => {
 					$rootScope.mensaje = fallo.data;
 				});
 		}
 		vm.entrar = function () {
-			apiService.usuarios.entrar().$promise
+			vm.usuario.$entrar()
 				.then(data => {
 					$rootScope.$emit('usuario', vm.usuario.email);
 					$rootScope.$emit('mensaje', 'recién entrado');
