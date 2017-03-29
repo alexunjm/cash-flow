@@ -44,8 +44,9 @@ module.exports = (app, rutaMovimientos) => {
         });
         res.json(total);
       }
-      else
-        res.status(204).send();
+      else {
+        res.json(total);
+      }
     });
   // esto otra ruta va a nivel de un elemento concreto
   // // api/priv/movimientos/159
