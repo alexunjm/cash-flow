@@ -13,7 +13,7 @@ module.exports = (app, rutaMovimientos) => {
       if (movimientosUsuario && movimientosUsuario.length > 0)
         res.json(movimientosUsuario);
       else
-        res.status(204).send();
+        res.sendStatus(204);
     })
     .post((req, res) => {
       // inserción de un movimiento
@@ -26,7 +26,7 @@ module.exports = (app, rutaMovimientos) => {
     })
     .delete((req, res) => {
       movimientos = [];
-      res.status(204).send();
+      res.sendStatus(204);
     });
   /**
    * Ruta para obtener los totales
@@ -57,16 +57,16 @@ module.exports = (app, rutaMovimientos) => {
       if (movimientosUsuario && movimientosUsuario.length > 0)
         res.json(movimientosUsuario[0]);
       else
-        res.status(404).send();
+        res.sendStatus(404);
     })
     .put((req, res) => {
       // actualización de un movimiento por id
-      let movimientosUsuario = getMovimientoUsuario(req.params.id, req.usuario);
-      if (movimientosUsuario && movimientosUsuario.length > 0) {
-        movimientosUsuario[0] = req.body;
+      let movimientosUsuarioIndex = getMovimientoUsuarioIndex(req.params.id, req.usuario);
+      if (movimientosUsuarioIndex >= 0) {
+        movimientos[movimientosUsuarioIndex] = req.body;
         res.json(1);
       } else {
-        res.status(404).send(0);
+        res.sendStatus(404);
       }
 
     })
@@ -75,16 +75,17 @@ module.exports = (app, rutaMovimientos) => {
       let movimientosUsuario = getMovimientoUsuario(req.params.id, req.usuario);
       if (movimientosUsuario && movimientosUsuario.length > 0) {
         movimientos.splice(req.params.id, 1)
-        res.status(204).send(1);
+        res.sendStatus(204);
       } else {
-        res.status(404).send(0);
+        res.sendStatus(404);
       }
     });
 
 
   var getMovimientosUsuario = (usuario) => movimientos.filter(m => m.usuario == usuario);
   var getMovimientoUsuario = (id, usuario) => movimientos.filter(m => m.usuario == usuario && m._id == id);
-
+  var getMovimientoUsuarioIndex = (id, usuario) => movimientos.findIndex(m => m.usuario == usuario && m._id == id);
+  var updateMovimientoUsuario = (id, usuario, body) => movimientos.map(m => m.usuario == usuario && m._id == id ? body : m)
 
   /** Respuesta común a errores */
   var resError = (err, res) => {

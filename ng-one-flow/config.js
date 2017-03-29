@@ -25,12 +25,14 @@
 		interceptor.responseError = function (response) {
 			var $state = $injector.get('$state');
 			if (response.status === 401) {
-				$rootScope.mensaje = "No hay derecho!!!";
+				$rootScope.$emit('mensaje', 'No hay derecho!!!');
 				$state.go('registro');
 			} else if (response.status === 419) {
-				$rootScope.mensaje = "Estoy caduco!!!";
+				$rootScope.$emit('mensaje', 'Estoy caduco!!!');
 				localStorage.removeItem("sessionId");
 				$state.go('registro');
+			} else {
+				$rootScope.$emit('mensaje', response.statusText);
 			};
 			return $q.reject(response);
 		}

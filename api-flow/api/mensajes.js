@@ -1,48 +1,39 @@
-/** Módulo para leer y escribir mensajes en memoria */
 let mensajes = [];
 
 module.exports = (app, rutamensajes) => {
 
-  // Tendremos dos mega-rutas por recurso
-  // una para ir a la colección
   // api/priv/mensajes
   app.route(rutamensajes)
     .get((req, res) => {
-      // filtro para el usuario actual
-      let mensajesUsuario = getmensajesUsuario(req.usuario);
+      let mensajesUsuario = getMensajesUsuario(req.usuario);
       if (mensajesUsuario && mensajesUsuario.length > 0)
         res.json(mensajesUsuario);
       else
         res.status(204).send();
     })
     .post((req, res) => {
-      // inserción de un movimiento
-      let nuevoMovimiento = req.body
-      nuevoMovimiento._id = mensajes.length;
-      // firma del movimiento en el servidor
-      nuevoMovimiento.usuario = req.usuario;
-      mensajes.push(nuevoMovimiento)
-      res.status(201).json(nuevoMovimiento);
+      let nuevoMensaje = req.body
+      nuevoMensaje._id = mensajes.length;
+      nuevoMensaje.usuario = req.usuario;
+      mensajes.push(nuevoMensaje)
+      res.status(201).json(nuevoMensaje);
       console.log('ok guardando mensaje');
     })
     .delete((req, res) => {
       mensajes = [];
       res.status(204).send();
     });
-  // esto otra ruta va a nivel de un elemento concreto
   // // api/priv/mensajes/159
   app.route(`${rutamensajes}/:id`)
     .get((req, res) => {
-      // lectura de un movimiento por id
-      let mensajesUsuario = getMovimientoUsuario(req.params.id, req.usuario);
+      let mensajesUsuario = getMensajeUsuario(req.params.id, req.usuario);
       if (mensajesUsuario && mensajesUsuario.length > 0)
         res.json(mensajesUsuario[0]);
       else
         res.status(404).send();
     })
     .delete((req, res) => {
-      // borrado de un movimiento por id
-      let mensajesUsuario = getMovimientoUsuario(req.params.id, req.usuario);
+      let mensajesUsuario = getMensajeUsuario(req.params.id, req.usuario);
       if (mensajesUsuario && mensajesUsuario.length > 0) {
         mensajes.splice(req.params.id, 1)
         res.status(204).send(1);
@@ -52,8 +43,8 @@ module.exports = (app, rutamensajes) => {
     });
 
 
-  var getmensajesUsuario = (usuario) => mensajes.filter(m => m.usuario == usuario);
-  var getMovimientoUsuario = (id, usuario) => mensajes.filter(m => m.usuario == usuario && m._id == id);
+  var getMensajesUsuario = (usuario) => mensajes.filter(m => m.usuario == usuario);
+  var getMensajeUsuario = (id, usuario) => mensajes.filter(m => m.usuario == usuario && m._id == id);
 
 
   /** Respuesta común a errores */

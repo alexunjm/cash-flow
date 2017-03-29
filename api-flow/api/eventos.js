@@ -1,28 +1,21 @@
-/** Módulo para leer y escribir eventos en memoria */
 let eventos = [];
 
 module.exports = (app, rutaeventos) => {
 
-  // Tendremos dos mega-rutas por recurso
-  // una para ir a la colección
-  // api/priv/eventos
   app.route(rutaeventos)
     .get((req, res) => {
-      // filtro para el usuario actual
-      let eventosUsuario = geteventosUsuario(req.usuario);
+      let eventosUsuario = getEventosUsuario(req.usuario);
       if (eventosUsuario && eventosUsuario.length > 0)
         res.json(eventosUsuario);
       else
         res.status(204).send();
     })
     .post((req, res) => {
-      // inserción de un movimiento
-      let nuevoMovimiento = req.body
-      nuevoMovimiento._id = eventos.length;
-      // firma del movimiento en el servidor
-      nuevoMovimiento.usuario = req.usuario;
-      eventos.push(nuevoMovimiento)
-      res.status(201).json(nuevoMovimiento);
+      let nuevoEvento = req.body
+      nuevoEvento._id = eventos.length;
+      nuevoEvento.usuario = req.usuario;
+      eventos.push(nuevoEvento)
+      res.status(201).json(nuevoEvento);
     })
     .delete((req, res) => {
       eventos = [];
@@ -51,7 +44,6 @@ module.exports = (app, rutaeventos) => {
 
     })
     .delete((req, res) => {
-      // borrado de un movimiento por id
       let eventosUsuario = getMovimientoUsuario(req.params.id, req.usuario);
       if (eventosUsuario && eventosUsuario.length > 0) {
         eventos.splice(req.params.id, 1)
@@ -62,11 +54,9 @@ module.exports = (app, rutaeventos) => {
     });
 
 
-  var geteventosUsuario = (usuario) => eventos.filter(m => m.usuario == usuario);
-  var getMovimientoUsuario = (id, usuario) => eventos.filter(m => m.usuario == usuario && m._id == id);
+  var getEventosUsuario = (usuario) => eventos.filter(m => m.usuario == usuario);
+  var getEventoUsuario = (id, usuario) => eventos.filter(m => m.usuario == usuario && m._id == id);
 
-
-  /** Respuesta común a errores */
   var resError = (err, res) => {
     console.error(err);
     res.status(500).send(err);

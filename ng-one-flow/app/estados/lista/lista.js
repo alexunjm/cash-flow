@@ -16,8 +16,11 @@
 
 	function ctrl(apiService) {
 		var vm = this;
-		this.valorCorte = 1;
-		vm.movimientos = apiService.movimientos.query();
+		this.$onInit = function () {
+			vm.valorCorte = 1;
+			vm.movimientos = apiService.movimientos.query();
+		}
+
 	}
 
 }());

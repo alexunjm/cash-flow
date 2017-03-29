@@ -39,7 +39,8 @@ module.exports = function (config) {
       './app/shared/componentes/radio/radio.js',
       './app/shared/componentes/select/select.js',
       './app/shared/componentes/valoracion/valoracion.js',
-      './app.spec.js'
+      './app.spec.js',
+      './app/shared/componentes/contador/contador.spec.js'
     ],
 
 

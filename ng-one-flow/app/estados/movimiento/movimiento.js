@@ -5,7 +5,7 @@
 		.config(function ($stateProvider) {
 			$stateProvider
 				.state(name, {
-					url: '/' + name + ':id',
+					url: '/' + name + '/:id',
 					template: `<ab-${name}></ab-${name}>`
 				})
 		})
@@ -13,14 +13,17 @@
 			templateUrl: `./app/estados/${name}/${name}.html`,
 			controller: ctrl
 		});
-	function ctrl(movimientosService, maestrosService, $state, $stateParams) {
+	function ctrl(apiService, $state, $stateParams) {
 		var vm = this;
-		/** Recuperación de parámetros */
-		var movimientoId = $stateParams.id;
 
-		/** Envío del parámetro en la consulta */
-		// se recibe un resurso con super poderes
-		vm.movimiento = movimientosService.movimientos.get({ id: movimientoId });
+		this.$onInit = function () {
+			/** Recuperación de parámetros */
+			var movimientoId = $stateParams.id;
+
+			/** Envío del parámetro en la consulta */
+			// se recibe un resurso con super poderes
+			vm.movimiento = apiService.movimientos.get({ id: movimientoId });
+		}
 
 		/**
 		 * La actualización el resurso se hace vía el método custom $update
