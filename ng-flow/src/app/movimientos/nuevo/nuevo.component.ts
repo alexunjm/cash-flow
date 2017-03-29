@@ -14,8 +14,8 @@ import { Tipo } from './../modelos/tipo';
   styleUrls: ['./nuevo.component.css']
 })
 export class NuevoComponent implements OnInit {
-  private nuevoForm: FormGroup;
-  private formUtils: FormUtils;
+  public nuevoForm: FormGroup;
+  public formUtils: FormUtils;
   tipos: Tipo[] = [];
   categorias: Categoria[] = [];
   movimiento: Movimiento;

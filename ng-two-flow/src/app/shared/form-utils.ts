@@ -1,7 +1,7 @@
 import { FormGroup } from '@angular/forms';
 
 export class FormUtils {
-  private form: FormGroup;
+  public form: FormGroup;
 
   constructor(form: FormGroup) {
     this.form = form;

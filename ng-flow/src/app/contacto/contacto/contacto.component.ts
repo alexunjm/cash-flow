@@ -10,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contacto.component.css']
 })
 export class ContactoComponent implements OnInit {
-  private formUtils: FormUtils;
-  private contactoForm: FormGroup;
+  public formUtils: FormUtils;
+  public contactoForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private datosService: DatosService) { }
 

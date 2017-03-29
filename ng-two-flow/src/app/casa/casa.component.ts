@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./casa.component.css']
 })
 export class CasaComponent implements OnInit {
-  private total: Total = new Total(0, 0);
+  public total: Total = new Total(0, 0);
 
   constructor(private datosService: DatosService) { }
 

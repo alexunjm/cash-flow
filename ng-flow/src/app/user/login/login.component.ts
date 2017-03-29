@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   /**
    * Some questions to indentify the user
    */
-  private credentials = {
+  public credentials = {
     email: '',
     password: ''
   };

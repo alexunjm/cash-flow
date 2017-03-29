@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./validator.component.css']
 })
 export class ValidatorComponent implements OnInit {
-  private formUtils: FormUtils;
+  public formUtils: FormUtils;
 
   @Input()
   form: FormGroup;
