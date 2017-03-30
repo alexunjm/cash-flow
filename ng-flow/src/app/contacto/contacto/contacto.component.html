@@ -14,9 +14,7 @@
             formControlName="email">
           <cf-validator
             [form]="contactoForm"
-            campo="email"
-            error="required"
-            mensaje="El campo es obligatorio">
+            campo="email">
           </cf-validator>
           <label for="subjectField"
             [ngClass]="{ 'text-error': formUtils.noEsValido('subject') }">
@@ -29,9 +27,7 @@
             formControlName="subject">
           <cf-validator
             [form]="contactoForm"
-            campo="subject"
-            error="required"
-            mensaje="El campo es obligatorio">
+            campo="subject">
           </cf-validator>
           <label for="descriptionField"
             [ngClass]="{ 'text-error': formUtils.noEsValido('description') }">
@@ -45,9 +41,7 @@
             </textarea>
           <cf-validator
             [form]="contactoForm"
-            campo="description"
-            error="required"
-            mensaje="El campo es obligatorio">
+            campo="description">
           </cf-validator>
           <input class="button-primary" type="submit" value="Enviar" [disabled]="!contactoForm.valid">
         </fieldset>

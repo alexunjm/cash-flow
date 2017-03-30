@@ -1,7 +1,12 @@
 import { FormGroup } from '@angular/forms';
 
 export class FormUtils {
-  private form: FormGroup;
+  public form: FormGroup;
+  public mensajes = {
+    required: 'El campo es obligatorio',
+    positive: 'El importe debe ser positivo',
+    betweenTwoDates: 'La fecha debe de estar comprendida entre hoy y +- 5días'
+  };
 
   constructor(form: FormGroup) {
     this.form = form;
@@ -23,8 +28,15 @@ export class FormUtils {
     return this.getCampo(campo).errors[error];
   }
 
+  getErroresCampo(campo) {
+    return Object.keys(this.getCampo(campo).errors);
+  }
+
   getCampo(campo) {
     return this.form.get(campo);
   }
 
+  getMensajeError(error) {
+    return this.mensajes[error];
+  }
 }

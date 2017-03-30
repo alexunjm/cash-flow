@@ -16,12 +16,6 @@ export class ValidatorComponent implements OnInit {
   @Input()
   campo: string;
 
-  @Input()
-  error: string;
-
-  @Input()
-  mensaje: string;
-
   constructor() { }
 
   ngOnInit() {

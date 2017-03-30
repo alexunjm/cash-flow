@@ -1,6 +1,7 @@
 <div *ngIf="formUtils.tieneErrores(campo)">
-  <p *ngIf="formUtils.getCampo(campo).errors[error]"
-      class="float-right text-error">
-      {{ mensaje }}
-  </p>
+  <div *ngFor="let error of formUtils.getErroresCampo(campo)">
+    <p class="float-right text-error">
+      {{ formUtils.getMensajeError(error) }}
+    </p>
+  </div>
 </div>

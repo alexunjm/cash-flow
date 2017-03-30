@@ -19,9 +19,7 @@
                formControlName="fecha">
       </div>
       <cf-validator campo="fecha"
-                    [form]="nuevoForm"
-                    error="betweenTwoDates"
-                    mensaje="La fecha debe de estar comprendida entre hoy y +- 5días">
+                    [form]="nuevoForm">
       </cf-validator>
     </section>
     <div class="row">
@@ -35,14 +33,7 @@
              formControlName="importe">
     </div>
     <cf-validator [form]="nuevoForm"
-                  campo="importe"
-                  error="required"
-                  mensaje="El campo es obligatorio">
-    </cf-validator>
-    <cf-validator [form]="nuevoForm"
-                  campo="importe"
-                  error="positive"
-                  mensaje="El importe debe ser positivo">
+                  campo="importe">
     </cf-validator>
     <div class="row">
       <label for="tipo"
@@ -72,9 +63,7 @@
       </select>
     </div>
     <cf-validator [form]="nuevoForm"
-                  campo="categoria"
-                  error="required"
-                  mensaje="El campo es obligatorio">
+                  campo="categoria">
     </cf-validator>
     <div class="row">
       <button type="submit"
