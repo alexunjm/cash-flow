@@ -5,35 +5,33 @@
   <form (ngSubmit)="alGuardarMovimiento(nuevoForm)"
         [formGroup]="nuevoForm"
         novalidate>
-    <section name="fecha-grupo">
+    <cf-validator campo="fecha"
+                [form]="nuevoForm">
       <div name="fecha-input"
-           class="row">
+            class="row">
         <label for="fecha"
-               class="column"
-               [ngClass]="{'text-error': formUtils.noEsValido('fecha') }">Fecha: </label>
+              class="column"
+              [ngClass]="{'text-error': formUtils.noEsValido('fecha') }">Fecha: </label>
         <input name="fecha"
-               type="date"
-               name="fecha"
-               class="column"
-               [ngClass]="{'input-error': formUtils.noEsValido('fecha') }"
-               formControlName="fecha">
+              type="date"
+              name="fecha"
+              class="column"
+              [ngClass]="{'input-error': formUtils.noEsValido('fecha') }"
+              formControlName="fecha">
       </div>
-      <cf-validator campo="fecha"
-                    [form]="nuevoForm">
-      </cf-validator>
-    </section>
-    <div class="row">
-      <label for="importe"
-             class="column"
-             [ngClass]="{'text-error': formUtils.noEsValido('importe') }">Importe: </label>
-      <input name="importe"
-             type="number"
-             class="column"
-             [ngClass]="{'input-error': formUtils.noEsValido('importe') }"
-             formControlName="importe">
-    </div>
+    </cf-validator>
     <cf-validator [form]="nuevoForm"
                   campo="importe">
+      <div class="row">
+        <label for="importe"
+              class="column"
+              [ngClass]="{'text-error': formUtils.noEsValido('importe') }">Importe: </label>
+        <input name="importe"
+              type="number"
+              class="column"
+              [ngClass]="{'input-error': formUtils.noEsValido('importe') }"
+              formControlName="importe">
+      </div>
     </cf-validator>
     <div class="row">
       <label for="tipo"
@@ -48,22 +46,22 @@
         <span class="{{ tipo.texto | lowercase }}">{{ tipo.texto }}</span>
       </div>
     </div>
-    <div class="row">
-      <label for="categoria"
-             class="column"
-             [ngClass]="{'text-error': formUtils.noEsValido('categoria') }">Categoría: </label>
-      <select name="categoria"
-              class="column"
-              [ngClass]="{'input-error': formUtils.noEsValido('categoria') }"
-              formControlName="categoria">
-          <option value="" selected>Selecciona una categoría...</option>
-            <option *ngFor="let categoria of categorias" [value]="categoria.id">
-              {{ categoria.texto }}
-            </option>
-      </select>
-    </div>
     <cf-validator [form]="nuevoForm"
                   campo="categoria">
+      <div class="row">
+        <label for="categoria"
+              class="column"
+              [ngClass]="{'text-error': formUtils.noEsValido('categoria') }">Categoría: </label>
+        <select name="categoria"
+                class="column"
+                [ngClass]="{'input-error': formUtils.noEsValido('categoria') }"
+                formControlName="categoria">
+            <option value="" selected>Selecciona una categoría...</option>
+              <option *ngFor="let categoria of categorias" [value]="categoria.id">
+                {{ categoria.texto }}
+              </option>
+        </select>
+      </div>
     </cf-validator>
     <div class="row">
       <button type="submit"
