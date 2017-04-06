@@ -1,5 +1,24 @@
-<h3>
-  Bienvenido a tu casa.
-</h3>
-<h4>Ingresos: <span>{{ total.ingresos }}</span></h4>
-<h4>Gastos: <span>{{ total.gastos }}</span></h4>
+ <div class="row">
+    <div class="column">
+      <h3>Bienvenido a tu casa.</h3>
+    </div>
+</div>
+ <div class="row">
+    <div class="column">
+      <h4>Ingresos: <span>{{ total.ingresos }}</span></h4>
+    </div>
+</div>
+ <div class="row">
+    <div class="column">
+      <h4>Gastos: <span>{{ total.gastos }}</span></h4>
+    </div>
+</div>
+ <div class="row">
+    <div class="column column-50">
+      <canvas baseChart
+              [data]="doughnutChartData"
+              [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType">
+      </canvas>
+    </div>
+</div>

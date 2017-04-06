@@ -9,12 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CasaComponent implements OnInit {
   public total: Total = new Total(0, 0);
+  // doughnut chart
+  public doughnutChartLabels: string[] = ['Gastos', 'Ingresos'];
+  public doughnutChartData: number[] = [this.total.gastos, this.total.ingresos];
+  public doughnutChartType = 'doughnut';
 
   constructor(private datosService: DatosService) { }
 
   ngOnInit() {
     this.datosService.getTotal$().subscribe(total => {
       this.total = total;
+      this.doughnutChartData = [this.total.gastos, this.total.ingresos];
     });
   }
 
