@@ -1,3 +1,3 @@
 # CashFlow
 
-Example app using Angular2.
+Example app using Angular.
