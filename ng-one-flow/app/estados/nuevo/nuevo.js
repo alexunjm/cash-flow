@@ -17,7 +17,7 @@
 	function ctrl(apiService, $rootScope) {
 		var vm = this;
 		this.$onInit = function () {
-			vm.nuevoMovimiento();
+			vm.crearNuevoMovimiento();
 			apiService.maestros.tipos().$promise.then(res => {
 				vm.tipos = res;
 				apiService.maestros.categorias().$promise.then(res => {
@@ -40,7 +40,7 @@
 			vm.categoriasTipo = vm.categorias.filter(c => c.tipo === vm.nuevoMovimiento.tipo);
 		}
 
-		vm.nuevoMovimiento = function () {
+		vm.crearNuevoMovimiento = function () {
 			vm.nuevoMovimiento = new apiService.movimientos();
 			vm.nuevoMovimiento.tipo = 1;
 			vm.nuevoMovimiento.esIngreso = 1;
