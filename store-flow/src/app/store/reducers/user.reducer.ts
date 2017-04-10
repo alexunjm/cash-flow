@@ -6,7 +6,7 @@ export interface UserState {
   token: string;
 };
 
-const initialState: UserState = {
+const initialState: UserState = <UserState> JSON.parse(localStorage.getItem('userState')) || {
   email: '',
   isLogged: false,
   token: ''
@@ -16,11 +16,15 @@ export function reducer(state = initialState, action: userActions.Actions): User
   switch (action.type) {
     case userActions.ActionTypes.LOGIN: {
       const loginAction = <userActions.LoginAction>action;
-      return {
+      const newState = {
         email: loginAction.payload.email,
         isLogged: true,
         token: loginAction.payload.token
       };
+      console.log('before');
+      localStorage.setItem('userState', JSON.stringify(newState));
+      console.log('after');
+      return newState;
     }
     case userActions.ActionTypes.LOGOUT: {
       return {

@@ -1,3 +1,5 @@
+import { GlobalState } from '../store/global-state.class';
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 
 import { UserService } from './user.service';
@@ -13,10 +15,10 @@ import { UserService } from './user.service';
 export class UserComponent implements OnInit {
   public user;
 
-  constructor(private userService: UserService) {  }
+  constructor(private store: Store< GlobalState>, private userService: UserService) {  }
 
   ngOnInit() {
-    this.user = this.userService.getProfile().user;
+    this.store.select(s => s.userReducer).subscribe(d => this.user = d);
   }
 
 }

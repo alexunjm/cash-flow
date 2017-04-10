@@ -1,3 +1,5 @@
+import { GlobalState } from '../store/global-state.class';
+import { Store } from '@ngrx/store';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/finally';
@@ -9,7 +11,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { UserData } from './model/data.class';
-import { UserStoreService } from './user-store.service';
 
 @Injectable()
 /**
@@ -27,12 +28,10 @@ export class HttpService extends Http {
     backend: XHRBackend,
     defaultOptions: RequestOptions,
     private router: Router,
-    private userStore: UserStoreService
+    private store: Store<GlobalState>
   ) {
     super(backend, defaultOptions);
-    this.userStore
-      .getDataObservable()
-      .subscribe((data: UserData) => this.authorization = 'Basic ' + data.token);
+    this.store.select(s => s.userReducer).subscribe(d => this.authorization = 'Basic ' + d.token);
   }
 
   /**
