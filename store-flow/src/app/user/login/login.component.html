@@ -1,0 +1,15 @@
+<div class="container">
+  <form #form="ngForm">
+    <h2>Por favor identifícate</h2>
+    <label for="email">E-mail</label>
+    <input type="email" name="email" [(ngModel)]="credentials.email">
+    <label for="password">Contraseña</label>
+    <input type="password" name="password" [(ngModel)]="credentials.password">
+    <button type="button" name="register" (click)="alRegistrar()">
+        Registro
+    </button>
+    <button type="button" name="login" (click)="alEntrar()">
+        Entrada
+    </button>
+  </form>
+</div>

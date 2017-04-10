@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="column">
+      <form [formGroup]="contactoForm" (ngSubmit)="onSubmit(contactoForm)"  novalidate>
+        <fieldset>
+          <cf-validator
+            [form]="contactoForm"
+            campo="email">
+            <label for="emailField"
+              [ngClass]="{ 'text-error': formUtils.noEsValido('email') }">
+              Email
+            </label>
+            <input type="text"
+              placeholder="Email"
+              id="emailField"
+              [ngClass]="{'input-error': formUtils.noEsValido('email') }"
+              formControlName="email">
+          </cf-validator>
+          <cf-validator
+            [form]="contactoForm"
+            campo="subject">
+            <label for="subjectField"
+              [ngClass]="{ 'text-error': formUtils.noEsValido('subject') }">
+              Asunto
+              </label>
+            <input type="text"
+              placeholder="Asunto"
+              id="subjectField"
+              [ngClass]="{'input-error': formUtils.noEsValido('subject') }"
+              formControlName="subject">
+          </cf-validator>
+          <cf-validator
+            [form]="contactoForm"
+            campo="description">
+            <label for="descriptionField"
+              [ngClass]="{ 'text-error': formUtils.noEsValido('description') }">
+              Descripción
+            </label>
+            <textarea placeholder="Descripción" 
+              id="descriptionField"
+              formControlName="description"
+              [ngClass]="{'input-error': formUtils.noEsValido('description') }"
+              formControlName="description">
+              </textarea>
+          </cf-validator>
+          <input class="button-primary" type="submit" value="Enviar" [disabled]="!contactoForm.valid">
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

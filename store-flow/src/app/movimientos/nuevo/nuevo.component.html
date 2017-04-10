@@ -1,0 +1,78 @@
+<header>
+  <h5>Nuevo Movimiento</h5>
+</header>
+<main>
+  <form (ngSubmit)="alGuardarMovimiento(nuevoForm)"
+        [formGroup]="nuevoForm"
+        novalidate>
+    <cf-validator campo="fecha"
+                [form]="nuevoForm">
+      <div name="fecha-input"
+            class="row">
+        <label for="fecha"
+              class="column"
+              [ngClass]="{'text-error': formUtils.noEsValido('fecha') }">Fecha: </label>
+        <input name="fecha"
+              type="date"
+              name="fecha"
+              class="column"
+              [ngClass]="{'input-error': formUtils.noEsValido('fecha') }"
+              formControlName="fecha">
+      </div>
+    </cf-validator>
+    <cf-validator [form]="nuevoForm"
+                  campo="importe">
+      <div class="row">
+        <label for="importe"
+              class="column"
+              [ngClass]="{'text-error': formUtils.noEsValido('importe') }">Importe: </label>
+        <input name="importe"
+              type="number"
+              class="column"
+              [ngClass]="{'input-error': formUtils.noEsValido('importe') }"
+              formControlName="importe">
+      </div>
+    </cf-validator>
+    <div class="row">
+      <label for="tipo"
+             class="column">Tipo: </label>
+      <div *ngFor="let tipo of tipos"
+           class="column">
+        <input name="tipo"
+               type="radio"
+               name="tipo"
+               [value]="tipo.id"
+               formControlName="tipo">
+        <span class="{{ tipo.texto | lowercase }}">{{ tipo.texto }}</span>
+      </div>
+    </div>
+    <cf-validator [form]="nuevoForm"
+                  campo="categoria">
+      <div class="row">
+        <label for="categoria"
+              class="column"
+              [ngClass]="{'text-error': formUtils.noEsValido('categoria') }">Categoría: </label>
+        <select name="categoria"
+                class="column"
+                [ngClass]="{'input-error': formUtils.noEsValido('categoria') }"
+                formControlName="categoria">
+            <option value="" selected>Selecciona una categoría...</option>
+              <option *ngFor="let categoria of categorias" [value]="categoria.id">
+                {{ categoria.texto }}
+              </option>
+        </select>
+      </div>
+    </cf-validator>
+    <div class="row">
+      <button type="submit"
+              [disabled]="!nuevoForm.valid">Crear movimiento</button>
+    </div>
+  </form>
+  <aside class="container">
+    <em class="row">Movimento en curso: </em>
+    <code class="row">
+      <!--visión de un objeto con el pipe json-->
+      <strong>{{ nuevoForm.value | json }}</strong>
+    </code>
+  </aside>
+</main>
