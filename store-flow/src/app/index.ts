@@ -1,9 +1,10 @@
-import { UserModule } from './user/user.module';
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { UserModule } from './user/user.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule } from '@ngrx/store';
+import * as userReducer from './store/reducers/user.reducer';
 
 export { AppComponent } from './app.component';
 export { AppRoutingModule } from './app-routing.module';
@@ -24,7 +25,8 @@ export const appConfig = {
   imports: [ // otros módulos que necesitamos para que este funcione
     AppRoutingModule, // el módulo de rutas ya configurado
     BrowserModule,
-    UserModule
+    UserModule,
+    StoreModule.provideStore(userReducer),
   ],
   bootstrap: [ // componente raíz para el arranque
     AppComponent

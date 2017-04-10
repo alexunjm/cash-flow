@@ -1,9 +1,12 @@
+import { LoginAction } from '../store/actions/user.actions';
+import { UserState } from '../store/reducers/user.reducer';
 import { CrudService } from './../shared/crud.service';
-import { Http } from '@angular/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { UserData } from './../shared/model/data.class';
 import { UserStoreService } from './../shared/user-store.service';
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 /**
@@ -11,9 +14,10 @@ import { UserStoreService } from './../shared/user-store.service';
  * */
 export class UserService extends CrudService {
 
-  constructor(private userStoreService: UserStoreService, http: Http, private router: Router) {
+  constructor(private userStoreService: UserStoreService, http: Http, private router: Router, private store: Store<UserState>) {
     super(http);
     this.apiEndPoint = 'pub/usuarios';
+    this.store.select(s => s).subscribe(d => console.log(d));
   }
 
   /**
@@ -37,7 +41,9 @@ export class UserService extends CrudService {
       .post('pub/usuarios', credenciales)
       .map(r => {
         const token = r.json();
-        this.userStoreService.logIn({email: credenciales.email }, token);
+        const loginAction: LoginAction = new LoginAction({ email: credenciales.email, isLogged: true, token: token });
+        this.store.dispatch(loginAction);
+        //this.userStoreService.logIn({email: credenciales.email }, token);
         this.router.navigate(['']);
       });
   }
