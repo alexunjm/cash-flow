@@ -18,11 +18,11 @@
 		var vm = this;
 		this.$onInit = function () {
 			vm.crearNuevoMovimiento();
-			apiService.maestros.tipos().$promise.then(res => {
+			apiService.maestros.getTipos().$promise.then(res => {
 				vm.tipos = res;
-				apiService.maestros.categorias().$promise.then(res => {
+				apiService.maestros.getCategorias().$promise.then(res => {
 					vm.categorias = res;
-					vm.categoriasPorTipo();
+					vm.getCategoriasPorTipo();
 				});
 			});
 		};
@@ -36,7 +36,7 @@
 					vm.nuevoMovimiento.importe = -9999;
 				});
 		};
-		vm.categoriasPorTipo = function () {
+		vm.getCategoriasPorTipo = function () {
 			vm.categoriasTipo = vm.categorias.filter(c => c.tipo === vm.nuevoMovimiento.tipo);
 		}
 

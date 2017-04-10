@@ -1,7 +1,7 @@
 {
   "name": "api-flow",
   "version": "1.0.0",
-  "description": "API para control de flujo de movimientos de caja",
+  "description": "API para control de flujo de movimientos de caja... y crud básico de otras cosas",
   "main": "index.js",
   "author": "@albertobasalo",
   "license": "ISC",

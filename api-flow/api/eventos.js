@@ -26,7 +26,7 @@ module.exports = (app, rutaeventos) => {
   app.route(`${rutaeventos}/:id`)
     .get((req, res) => {
       // lectura de un movimiento por id
-      let eventosUsuario = getMovimientoUsuario(req.params.id, req.usuario);
+      let eventosUsuario = getEventoUsuario(req.params.id, req.usuario);
       if (eventosUsuario && eventosUsuario.length > 0)
         res.json(eventosUsuario[0]);
       else
@@ -34,7 +34,7 @@ module.exports = (app, rutaeventos) => {
     })
     .put((req, res) => {
       // actualización de un movimiento por id
-      let eventosUsuario = getMovimientoUsuario(req.params.id, req.usuario);
+      let eventosUsuario = getEventoUsuario(req.params.id, req.usuario);
       if (eventosUsuario && eventosUsuario.length > 0) {
         eventosUsuario[0] = req.body;
         res.json(1);
@@ -44,7 +44,7 @@ module.exports = (app, rutaeventos) => {
 
     })
     .delete((req, res) => {
-      let eventosUsuario = getMovimientoUsuario(req.params.id, req.usuario);
+      let eventosUsuario = getEventoUsuario(req.params.id, req.usuario);
       if (eventosUsuario && eventosUsuario.length > 0) {
         eventos.splice(req.params.id, 1)
         res.status(204).send(1);

@@ -8,8 +8,8 @@
 			environment.apiUrl + "/api/pub/maestros/:nombre",
 			{},
 			{
-				'categorias': { method: 'GET', isArray: true, params: { nombre: 'categorias' } },
-				'tipos': { method: 'GET', isArray: true, params: { nombre: 'tipos' } },
+				'getCategorias': { method: 'GET', isArray: true, params: { nombre: 'categorias' } },
+				'getTipos': { method: 'GET', isArray: true, params: { nombre: 'tipos' } },
 			}
 		);
 
@@ -17,8 +17,8 @@
 			environment.apiUrl + "/api/priv/movimientos/:id",
 			{ id: '@_id' },
 			{
-				'update': { method: 'PUT' },
-				'total': { method: 'GET', params: { id: 'total' } }
+				'actualizar': { method: 'PUT' },
+				'getTotal': { method: 'GET', params: { id: 'total' } }
 			}
 		);
 
@@ -38,12 +38,7 @@
 	}
 
 	function string2object(value) {
-		console.group('api/usuarios');
-		console.log(value);
-		const data = { token: angular.fromJson(value) }
-		console.log(data);
-		console.groupEnd();
-		return data;
+		return { token: angular.fromJson(value) }
 	}
 
 }());

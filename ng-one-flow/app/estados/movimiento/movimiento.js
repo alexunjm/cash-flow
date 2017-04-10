@@ -31,7 +31,7 @@
 		vm.guardarMovimiento = function () {
 			vm.movimiento.fecha = new Date(vm.movimiento.fecha);
 			// Llamamos al método uptade
-			vm.movimiento.$update()
+			vm.movimiento.$actualizar()
 				.then(function (result) {
 					$state.go('lista')
 				}, function (error) {
