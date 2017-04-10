@@ -1,4 +1,7 @@
+import { GlobalState } from './store/global-state.class';
 import { Component } from '@angular/core';
+import { OnInit } from '@angular/core/core';
+import { Store } from '@ngrx/store';
 // Es una función que actúa como decorador
 // Es la forma que tiene TypeScript de agregar Metadata al código
 @Component({

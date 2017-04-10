@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
 import * as userReducer from './store/reducers/user.reducer';
+import * as movimientoReducer from './store/reducers/movimiento.reducer';
 
 export { AppComponent } from './app.component';
 export { AppRoutingModule } from './app-routing.module';
@@ -26,7 +27,7 @@ export const appConfig = {
     AppRoutingModule, // el módulo de rutas ya configurado
     BrowserModule,
     UserModule,
-    StoreModule.provideStore(userReducer),
+    StoreModule.provideStore({userReducer: userReducer.reducer, movimientoReducer: movimientoReducer.reducer}),
   ],
   bootstrap: [ // componente raíz para el arranque
     AppComponent

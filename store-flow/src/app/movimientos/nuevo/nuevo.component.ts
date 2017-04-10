@@ -1,12 +1,15 @@
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { betweenTwoDatesValidator, positiveNumberValidator } from '../../shared/custom-validators';
-
-import { Categoria } from './../modelos/categoria';
-import { DatosService } from './../datos.service';
+import * as movimientoActions from '../../store/actions/movimiento.actions';
+import { GlobalState } from '../../store/global-state.class';
 import { FormUtils } from './../../shared/form-utils';
+import { DatosService } from './../datos.service';
+import { Categoria } from './../modelos/categoria';
 import { Movimiento } from './../modelos/movimiento';
 import { Tipo } from './../modelos/tipo';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+
 
 @Component({
   selector: 'cf-nuevo',
@@ -20,7 +23,9 @@ export class NuevoComponent implements OnInit {
   categorias: Categoria[] = [];
   movimiento: Movimiento;
 
-  constructor(private formBuilder: FormBuilder, private datosService: DatosService) { }
+  constructor(private formBuilder: FormBuilder, private datosService: DatosService, private store: Store<GlobalState>) {
+    this.store.select(s => s.movimientoReducer);
+  }
 
   ngOnInit() {
     this.cargarMaestros();
@@ -68,10 +73,9 @@ export class NuevoComponent implements OnInit {
     });
   }
 
-
   alGuardarMovimiento({ value, valid }): void {
     this.datosService
       .postMovimiento$(value)
-      .subscribe(r => console.log('Movimiento guardado'));
+      .subscribe(r => this.store.dispatch(new movimientoActions.CrearAction()));
   }
 }

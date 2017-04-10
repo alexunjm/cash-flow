@@ -1,3 +1,4 @@
+import { GlobalState } from '../store/global-state.class';
 import { LoginAction } from '../store/actions/user.actions';
 import { UserState } from '../store/reducers/user.reducer';
 import { CrudService } from './../shared/crud.service';
@@ -14,10 +15,10 @@ import { Store } from '@ngrx/store';
  * */
 export class UserService extends CrudService {
 
-  constructor(private userStoreService: UserStoreService, http: Http, private router: Router, private store: Store<UserState>) {
+  constructor(private userStoreService: UserStoreService, http: Http, private router: Router, private store: Store<GlobalState>) {
     super(http);
     this.apiEndPoint = 'pub/usuarios';
-    this.store.select(s => s).subscribe(d => console.log(d));
+    this.store.select(s => s.userReducer).subscribe(d => console.log(d));
   }
 
   /**
@@ -43,7 +44,7 @@ export class UserService extends CrudService {
         const token = r.json();
         const loginAction: LoginAction = new LoginAction({ email: credenciales.email, isLogged: true, token: token });
         this.store.dispatch(loginAction);
-        //this.userStoreService.logIn({email: credenciales.email }, token);
+        this.userStoreService.logIn({email: credenciales.email }, token);
         this.router.navigate(['']);
       });
   }
